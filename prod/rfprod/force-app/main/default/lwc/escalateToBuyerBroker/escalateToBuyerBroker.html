@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="">
+        <div class="slds-m-around_large" >
+            <div if:false={isLoaded} class="slds-is-relative">
+                <lightning-spinner
+                    alternative-text="Loading..." variant="brand">
+                </lightning-spinner>
+            </div>
+            <div class="slds-text-heading_medium" style="text-align:center;color:green" if:true={escalateSuccess}>Escalated to Broker</div>
+            <div class="slds-text-heading_medium" style="text-align:center;color: red;" if:true={escalateFailed}>Failed to Esclate</div>
+        </div>
+        <div class="slds-align_absolute-center">
+            <lightning-button variant="brand" label="ok" title="ok" onclick={closeQA} class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

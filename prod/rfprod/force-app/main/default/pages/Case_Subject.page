@@ -1,0 +1,27 @@
+<apex:page standardController="Case" title="">
+
+    <apex:includeScript value="/support/console/45.0/integration.js"/>
+    <script type="text/javascript">
+    function testSetTabTitle() {
+        //Set the current tab's title
+        sforce.console.setTabTitle('My New Title');
+    }
+    function testing() {
+        //Set the current tab's title
+        sforce.console.setTabTitle('{!Case.Subject}');
+    }
+    var pageLoad = window.onload;
+    window.onload = function() {
+        if (pageLoad) {
+            pageLoad();
+        }
+        testing();
+        console.log('done')
+    }
+    </script>
+    <style>
+        body{
+        background: transparent;
+        }
+    </style>
+</apex:page>

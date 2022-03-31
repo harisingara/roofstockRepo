@@ -1,0 +1,23 @@
+.THIS .left-align {
+    text-align: left;
+    word-break: break-all;
+}
+.THIS .right-align {
+    text-align: right;
+}
+.THIS .boldcls {
+    font-weight: bold;
+}
+.THIS .truncate {
+    display:inline-block;
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.THIS .even {
+      background-color:#ffffff;
+     }
+.THIS .odd {
+      background-color:rgba(220, 220, 220, 0.3);
+     }

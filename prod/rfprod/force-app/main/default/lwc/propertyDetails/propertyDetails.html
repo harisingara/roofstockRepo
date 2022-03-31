@@ -1,0 +1,120 @@
+<template>
+    <div class="slds-modal__header slds-align_absolute-center">
+        <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Update Property Attributes</h2>
+    </div>
+        <div class="slds-p-around_medium">
+            <div if:false={isLoaded} class="slds-is-relative">
+                <lightning-spinner
+                    alternative-text="Loading..." variant="brand">
+                </lightning-spinner>
+            </div>
+            <h3 class="slds-section-title--divider">Property Pool Info</h3>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="property" value={propertyDetails.gateCode} label="Gate Code" name="gateCode">
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-combobox
+                        name="mailBoxType"
+                        label="MailBox Type"
+                        options={mailBoxTypeOptions}
+                        onchange={handleMailBoxTypeChange}
+                        value= {propertyDetails.mailBoxType}
+                        class="property" 
+                    ></lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-Item size="6" padding="around-small">
+                    <lightning-combobox
+                        name="pool"
+                        label="Has Pool"
+                        options={hasPoolOption}
+                        onchange={handleHasPool}
+                        value= {propertyDetails.hasPool}
+                        class="property" 
+                    ></lightning-combobox>
+                </lightning-layout-Item>
+                <lightning-layout-Item size="6" padding="around-small">
+                    <lightning-combobox
+                        name="PoolType"
+                        label="Pool Type"
+                        options={poolTypeOptions}
+                        onchange={handlePoolTypeChange}
+                        value= {propertyDetails.poolType}
+                        class="property" 
+                    ></lightning-combobox>
+                </lightning-layout-Item>
+            </lightning-layout>
+
+            <h3 class="slds-section-title--divider">Lockbox Info</h3>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="propertyUnit" value={propertyDetails.lockboxLocation} label="LockBox Location" name="lockboxLocation"></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="propertyUnit" value={propertyDetails.lockboxCode} label="LockBox Code" name="lockboxCode"></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="propertyUnit" value={propertyDetails.selfShowingLockboxSerialNumber} label="Self Showing Lock Box Serial Number" name="serialNumber"></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            <h3 class="slds-section-title--divider">Trash Info</h3>
+            <lightning-layout multiple-rows="true">    
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-combobox
+                        name="disposalBinType"
+                        label="Garbage Disposal Bin Type"
+                        options={disposalBinTypeOptions}
+                        onchange={handleDisposalBinTypeChange}
+                        value= {propertyDetails.garbageDisposalBinType}
+                        class="propertyUnit" 
+                    ></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-combobox
+                        name="trashResponsibility"
+                        label="Trash responsibility"
+                        options={trashResponsibilityOptions}
+                        onchange={handleTrashResponsibilityChange}
+                        value= {propertyDetails.trashrResponsibility}
+                        class="propertyUnit" 
+                    ></lightning-combobox> 
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-combobox
+                        name="trashBin"
+                        label="Is Trash Bin available?"
+                        options= {isTrashBinAvailable}
+                        onchange= {handleIsTrashBinAvailable}
+                        value= {propertyDetails.isTrashBinAvailable}
+                        class="propertyUnit" 
+                    ></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-combobox
+                        name="recycleBin"
+                        label="Is Recycle Bin available?"
+                        options= {recycleBinavailableOption}
+                        onchange= {handleIsRecycleBinavailable}
+                        value= {propertyDetails.isRecycleBinAvailable}
+                        class="propertyUnit"
+                    ></lightning-combobox>
+                </lightning-layout-item>
+           </lightning-layout>
+
+        </div> 
+        <div class="slds-modal__footer slds-align_absolute-center">   
+            <div class="slds-align_absolute-center" style="height:5rem">
+                <lightning-button label="Update" onclick={save} variant="brand"></lightning-button>&nbsp;
+                <lightning-button label="Close" onclick={Close} variant="brand"></lightning-button>
+            </div> 
+        </div>   
+    
+</template>

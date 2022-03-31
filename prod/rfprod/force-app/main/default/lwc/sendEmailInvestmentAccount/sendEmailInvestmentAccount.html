@@ -1,0 +1,5 @@
+<template>
+    <template if:true={showEmailForm}>
+        <c-generic-send-email-New show-primary-contact="true" to-email={primaryContactEmail} record-id={recordId} email-service-address={emailServiceAddress} from={from} onsend={closeModal} onclose={closeModal}></c-generic-send-email-New>
+    </template>
+</template>

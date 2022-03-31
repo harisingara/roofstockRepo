@@ -1,0 +1,82 @@
+<template>
+    <lightning-quick-action-panel header={headervalue}>
+
+        <template if:true={bpoScreen}>
+            <div class={messageclass} role="alert">
+                <span class="slds-assistive-text">error</span>
+                <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+                    <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"></lightning-icon>
+                </span>
+                <b><h2>{message1}</h2></b>
+            </div>
+
+            <div class="slds-p-horizontal--medium">
+                <label class="slds-form-element__label">Product</label>
+                <div class="slds-form-element__control">
+                  <div class="slds-select_container">
+                    <select class="slds-select" onchange={selectProductChangeValue} required={requiredvar}>
+                          <option value="">---None---</option>                
+                            <template for:each={selectTargetValues.data} for:item="selectOptItem">
+                               <option key={selectOptItem.custFldvalue} value={selectOptItem.custFldvalue}>
+                                 {selectOptItem.custFldlabel}
+                               </option>
+                          </template>
+                    </select>
+                  </div>
+                </div>
+            </div>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Pool"  onchange={selectPoolChangeValue} required></lightning-input>
+            </div>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Branch Id"  onchange={selectBranchIdChangeValue} required></lightning-input>
+            </div>
+            <div class="slds-p-around_medium">
+                <lightning-button variant="brand" disabled={disable} label="Confirm BPO Order" title="Yes" onclick={confirmBpoOrder} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Cancel" title="No" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+            </div>
+
+        </template>
+
+        <template if:true={calloutSuccess}>
+            <div class={messageclass} role="alert">
+            <span class="slds-assistive-text">error</span>
+            <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+                <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"></lightning-icon>
+            </span>
+            <b><h2>{message}</h2></b>
+        </div>
+        <template if:true={callout}>
+        <div class="slds-p-around_large">
+            <div> Latest BPO Valuation Amount : 
+                <template if:true={LatestBPOValuationAmt}>
+                    $
+                    <lightning-formatted-number  value={LatestBPOValuationAmt}></lightning-formatted-number>
+                </template>
+            </div>
+            <div> Latest BPO Valuation Date : {LatestBPOValuationDate}</div>
+        </div>
+
+        <h2> BPO Requested in the past </h2>
+        <template if:true={bpoReqList}>
+            <lightning-datatable data={bpoReqList} columns={columns} key-field="Id" hide-checkbox-column="true"
+            show-row-number-column="true" >
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            {error}
+        </template>
+
+        <div class="slds-p-around_medium">
+            <lightning-button variant="brand" disabled={disable} label="Yes" title="Yes" onclick={goToNextScreen} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="No" title="No" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        </template>
+        </template>
+        <div if:false={isLoaded} class="slds-is-relative">
+            <lightning-spinner
+                alternative-text="Loading..." variant="brand">
+            </lightning-spinner>
+        </div>
+    </lightning-quick-action-panel>
+    </template>

@@ -1,0 +1,10 @@
+<aura:component >
+	<aura:attribute name="lstSubject" type="Object[]"/>
+    <aura:attribute name="selectedSubject" type="Object"/>
+    <aura:attribute name="isSelected" type="String" />
+    <aura:attribute name="email" type="Object"/>
+ 
+    <aura:iteration items="{!v.lstSubject}" var="selectedSubject"> 
+        <c:CustomEmailAccordionDisplay email="{!v.email}" selectedSubject="{!selectedSubject}" isRead="{!selectedSubject.isRead}"/> 
+    </aura:iteration>
+</aura:component>

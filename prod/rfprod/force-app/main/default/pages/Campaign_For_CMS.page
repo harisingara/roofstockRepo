@@ -1,0 +1,21 @@
+<apex:page StandardController="Campaign"> 
+   <apex:form style="margin 50px;" >
+       <apex:pageBlock title="Campaign Name : {!Campaign.Name}" >
+           <apex:pageMessages />
+           <apex:pageBlockButtons >
+               <apex:commandButton value="Bid" action="{!save}" />
+           </apex:pageBlockButtons>
+           <apex:pageBlockSection title="My Section" columns="1" collapsible="true" >
+
+                   <apex:outputField value="{!Campaign.Status}"/>
+                   <apex:outputField value="{!Campaign.StartDate}"/>
+                   <apex:outputField value="{!Campaign.EndDate}"/>
+                   <div style="text-align:center;">
+                        <apex:image url="{!Campaign.Photo_Link__c}" style="max-width:200px;max-height:200px;"/>
+                    </div>
+                   
+                   
+           </apex:pageBlockSection>
+       </apex:pageBlock>
+   </apex:form>
+</apex:page>

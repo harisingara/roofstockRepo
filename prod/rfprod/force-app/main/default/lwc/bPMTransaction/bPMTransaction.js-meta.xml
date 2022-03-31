@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <!-- Configuring the design attributes --><targetConfigs>
+        <targetConfig targets="lightning__HomePage,lightning__RecordPage">
+            <property name="iframeUrl" type="String" default="" label="Source URL (HTTPS only)"/>
+            <property name="width" type="String" default="100%" label="Width"/>
+            <property name="height" type="String" default="500px" label="Height"/>
+            <property name="styles" type="String" default="border: none; overflow: scroll;" label="Style"/>
+            <property name="scrolling" type="String" default="auto" label="Scrolling"/>
+            <property name="frameBorder" type="String" default="0" label="Frame Border"/>
+            <property name="sandbox" type="String" default="allow-same-origin allow-scripts allow-forms" label="Frame Border"/>
+            <property name="cardName" type="String" default="" label=""/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

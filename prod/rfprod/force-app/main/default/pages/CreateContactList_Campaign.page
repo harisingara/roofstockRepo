@@ -1,0 +1,544 @@
+<apex:page standardController="Campaign" extensions="CreateContactList_CampaignController" action="{!processSelected}"  lightningStylesheets="true" docType="html-5.0">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>      
+    <script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");                  
+            for(var i=0; i<inputCheckBox.length; i++){          
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+                function ScrollFunction(){
+                
+                var elmnt = document.getElementById('ScrollDownMarkup');
+                elmnt.scrollIntoView(true);
+               
+        }
+        
+        
+        
+        
+    </script>
+    
+   <style type="text/css">
+
+    .tableClass{ margin:0px;
+    padding: 40px;}     
+    
+    .popupBackground{
+        background-color:black;
+        opacity: 0.20;
+        filter: alpha(opacity = 20);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 9998;
+    }
+    .custPopup{
+        background-color: white;
+        border-width: 2px;
+        border-style: solid;
+        z-index: 9999;
+        left: 50%;
+        padding:10px;
+        position: absolute;
+        width: 1000px;
+        margin-left: -500px;
+        top:100px;
+    }
+
+</style>
+
+
+<apex:form >
+      <apex:pageBlock >   
+
+            
+            
+        <div align="center" draggable="false" >
+            <apex:commandButton value="Contact Selected" action="{!processSelected}" /> 
+            <apex:commandButton value="Save Notes" action="{!SaveNotes}" rendered="true"/> 
+            
+        </div>   
+        <div align="right" draggable="false" >
+               
+            <apex:commandButton value="Scroll to Send"  onClick="ScrollFunction();return false;" rendered="true"/>   
+            <br></br><br></br>                  
+            <apex:commandButton value="Reset Filters"  action="{!ResetFilters}" rendered="true"/>  
+            <apex:commandButton value="Search"  action="{!ViewData}" rendered="true"/>  
+               
+        </div>
+        
+        <br></br>    
+        
+        <div align="left" draggable="false" >
+        &nbsp;
+        <apex:outputLabel value="Accounts" for="Accounts"/>                      
+            <apex:selectList size="5" multiselect="true" value="{!AccountsPickvalue}">
+           <!--      <apex:actionSupport event="onchange" action="{!RefreshPicklists}" rerender="none"/>               --> 
+                <apex:selectOptions value="{!accountsPick}">
+                </apex:selectOptions>
+            </apex:selectList>
+            
+      <!--                         
+           &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+     
+           
+        <apex:outputLabel value="Template Status" for="Template_Status"/>  
+         &nbsp;                    
+            <apex:selectList size="1" value="{!TemplateStatusPickvalue}">
+                <apex:actionSupport event="onchange" action="{!ViewData}" />
+                <apex:selectOptions value="{!templateStatusPick}">
+                </apex:selectOptions>
+            </apex:selectList>
+
+            --> 
+            
+         &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+     
+           
+        <apex:outputLabel value="Tier" for="Tier" />  
+         &nbsp;                    
+            <apex:selectList size="5" multiselect="true"  value="{!TierPickvalue}"  >
+                <apex:selectOptions value="{!TierPick}">
+                </apex:selectOptions>
+            </apex:selectList>
+            
+            
+                &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;    
+                       
+        <apex:outputLabel value="NDA Status" for="NDA_Status" />    
+         &nbsp;                  
+            <apex:selectList size="5" multiselect="true"  value="{!NDAStatusPickvalue}" >
+                <apex:selectOptions value="{!NDAStatusPick}"/>
+            <!--    </apex:selectOptions> -->
+            </apex:selectList>
+            
+                &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;    
+                       
+        <apex:outputLabel value="Portfolio Status" for="Portfolio_Status"/>  
+         &nbsp;                    
+            <apex:selectList size="5" multiselect="true"  value="{!portfolioStatusPickvalue}">
+                <apex:selectOptions value="{!portfolioStatusPick}">
+                </apex:selectOptions>
+            </apex:selectList>
+                        
+                &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;   
+                                    
+        <apex:outputLabel value="Bid Status" for="Bid_Status"/>    
+         &nbsp;                  
+            <apex:selectList size="5" multiselect="true"  value="{!BidStatusPickvalue}">
+                <apex:selectOptions value="{!BidStatusPick}">
+                </apex:selectOptions>
+            </apex:selectList>
+            
+                &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+                
+                 
+
+        </div>
+        <br></br>                       
+  
+  
+  
+
+                     
+  
+  
+  
+        <apex:pageBlockTable value="{!CampaignMembers}" var="c" >        
+           
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:inputCheckbox onclick="selectAllCheckboxes(this,'inputId')"/>
+                </apex:facet>
+                <apex:inputCheckbox value="{!c.selected}" id="inputId"/>
+            </apex:column>
+
+             <apex:column >
+               <apex:commandLink action="{!openPopup}"  value="test" style="background-image:url({!URLFOR($Resource.plus_icon)});color:transparent;-webkit-user-select: none; -moz-user-select: none;  -ms-user-select: none; user-select: none; overflow:hidden; height:20px;width:20px;background-repeat: no-repeat;background-size: 15px 15px; background-position: center ;border:none;" rendered="true" >
+                   <apex:param name="rowId" value="{!c.con.Id}"/>
+               </apex:commandLink>                  
+            </apex:column>       
+                    
+            <apex:column >
+               <apex:facet name="header">
+                   <apex:commandLink action="{!ViewData}" value="Name{!IF(sortExpression=='Name',IF(sortDirection='ASC','▼','▲'),'')}" id="cmdSort">
+                   <apex:param value="Name" name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>
+             </apex:facet>   
+                <apex:outputlink value="#" onclick="window.open('/{!c.con.Contact.Id}','_blank');">{!c.con.Name}</apex:outputlink>
+            </apex:column>
+            
+            
+            <apex:column value="{!c.con.Account__c}">
+             <apex:facet name="header">
+               <apex:commandLink action="{!ViewData}" value="Account{!IF(sortExpression=='Account__c',IF(sortDirection='ASC','▼','▲'),'')}">
+                   <apex:param value="Account__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>
+             </apex:facet>   
+            </apex:column>            
+              
+                    
+            <apex:column value="{!c.con.Email}">
+             <apex:facet name="header">
+               <apex:commandLink action="{!ViewData}" value="Email{!IF(sortExpression=='Email',IF(sortDirection='ASC','▼','▲'),'')}">
+                   <apex:param value="Email" name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>
+             </apex:facet>            
+            </apex:column>
+                        
+            <apex:column >
+             <apex:facet name="header">
+               <apex:commandLink action="{!ViewData}" value="Template Status{!IF(sortExpression=='Template_Status__c',IF(sortDirection='ASC','▼','▲'),'')}" >
+                 <apex:param value="Template_Status__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>
+             </apex:facet>   
+                <font color="{!if(c.con.Template_Status__c = 'Sent', 'green','red')}"> 
+                <apex:outputtext value="{!c.con.Template_Status__c}"/>
+                </font>
+            </apex:column>   
+            
+            
+            
+            
+                                 
+            <apex:column >
+             <apex:facet name="header">
+               <apex:commandLink action="{!ViewData}" value="Tier{!IF(sortExpression=='Tier__c',IF(sortDirection='ASC','▼','▲'),'')}" >
+                 <apex:param value="Tier__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>
+             </apex:facet>   
+                <apex:outputtext value="{!c.con.Tier__c}"/>
+            </apex:column>
+            
+            <apex:column >
+             <apex:facet name="header">             
+               <apex:commandLink action="{!ViewData}" value="NDA Status{!IF(sortExpression=='NDA_Status__c ',IF(sortDirection='ASC','▼','▲'),'')}" >
+                 <apex:param value="NDA_Status__c " name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>             
+             </apex:facet> 
+                <font color="{!if(c.con.NDA_Status__c = 'Not Sent', 'red','green')}"> 
+                <apex:outputtext value="{!c.con.NDA_Status__c}"/>
+                </font>
+            </apex:column>
+            
+            <apex:column >
+             <apex:facet name="header">             
+               <apex:commandLink action="{!ViewData}" value="Portfolio Status{!IF(sortExpression=='Portfolio_Status__c',IF(sortDirection='ASC','▼','▲'),'')}" >
+                 <apex:param value="Portfolio_Status__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>             
+             </apex:facet>           
+                <font color="{!if(c.con.Portfolio_Status__c= 'Out', 'red','green')}"> 
+                    <apex:outputtext value="{!c.con.Portfolio_Status__c}"/>
+                </font>
+            </apex:column>
+
+            
+            <apex:column >  
+             <apex:facet name="header">             
+               <apex:commandLink action="{!ViewData}" value="Bid Status{!IF(sortExpression=='Bid_Status__c',IF(sortDirection='ASC','▼','▲'),'')}" >
+                 <apex:param value="Bid_Status__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+               </apex:commandLink>             
+             </apex:facet>  
+               <apex:commandLink action="{!openDetailPopup}"  value="{!c.con.Bid_Status__c}"  >
+                   <apex:param name="rowId" value="{!c.con.Id}"/>
+               </apex:commandLink> 
+            </apex:column>        
+           
+            <apex:column >
+                <apex:facet name="header">Notes</apex:facet> 
+                <apex:outputfield value="{!c.con.Notes__c}" >
+                    <apex:inlineEditSupport showOnEdit="saveButton, cancelButton" hideOnEdit="editButton" event="ondblclick" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>   
+                </apex:outputfield>
+            </apex:column>
+            
+       </apex:pageBlockTable>
+       
+       <br></br>
+       
+       <div align="center" draggable="false" >
+            <apex:commandButton value="Contact Selected" action="{!processSelected}" id="selectedContactButton" rerender="test"/> 
+            <apex:commandButton value="Save Notes" action="{!SaveNotes}" rendered="true"/>    
+       </div>
+       
+       
+   <!--                    -->
+   <!-- BID DETAIL POPUP   -->
+   <!--                    -->
+                      
+       
+     <div>   
+         <apex:outputPanel id="BidDetailsPopup" rendered="{!showDetailPopup}" >
+                        <apex:outputPanel styleClass="popupBackground" layout="block" />
+                            <apex:outputPanel styleClass="custPopup" layout="block" >
+                                <center>
+                                <head>
+                                    <h3>Bid Details : <span style="color:blue">{!campaign.Name}</span> for <span style="color:blue">{!ContactName}</span></h3>
+                                  
+                                            
+                                </head>
+                                <br></br> <br></br> 
+                                <apex:outputText style="font-weight: bold;" value="{!bid_number_msg}"/><br></br><br></br>
+
+                                 <br></br>
+                    
+                                
+                                <apex:panelGrid columns="1"  >                                                               
+
+                                    <apex:pageBlockTable value="{!relatedBids}" var="b" rendered="{!displayBidTable_bool}" columnsWidth="1000px,1000px,1000px,1000px,1000px,1000px,1000px">
+                                        <apex:column >
+                                            <apex:facet name="header">Bid Name</apex:facet>
+                                            <apex:outputlink value="#" onclick="window.open('/{!b.Id}','_blank');">{!b.Name}</apex:outputlink>
+                                        </apex:column>
+                                        
+                                        <apex:column >                                        
+                                            <apex:facet name="header">Created Date</apex:facet>
+                                            <apex:outputText value="{0, date, M'/'d'/'yy}" id="myNumberDisplay2" >
+                                                <apex:param value="{!b.CreatedDate}"/>
+                                            </apex:outputText>
+                                        </apex:column> 
+                                        
+                                        <apex:column >                                        
+                                            <apex:facet name="header">Stage</apex:facet>
+                                            <apex:outputText value="{!b.Stage__c }"/>
+                                        </apex:column>
+                                        
+                                        <apex:column >
+                                           <apex:facet name="header">Amount</apex:facet>
+                                            <apex:outputText value="{0, number, $ ###,##0}" id="myNumberDisplay" >
+                                                <apex:param value="{!b.Amount__c}"/>
+                                            </apex:outputText>
+                                        </apex:column>
+                                    
+                                        <apex:column >
+                                        <apex:facet name="header" >Deposit</apex:facet>
+                                            <apex:outputText value="{!b.Deposit__c} {!if(b.Deposit__c = null, null, '%')}"/>
+                                        </apex:column>
+                                        
+                                        <apex:column >                                        
+                                            <apex:facet name="header">Capitalization</apex:facet>
+                                            <apex:outputText value="{!b.Capitalization__c}"/>
+                                        </apex:column>         
+                                        
+                                          
+                                        
+                                        <apex:column >                                        
+                                            <apex:facet name="header">Contact</apex:facet>
+                                             
+                                           <!--      ne marche pas car LOOKUP     -->
+                                               <apex:outputText value="{!b.Contact__r.Name}"/>         
+                                            
+                                        </apex:column>
+                                        
+                                        
+                                        
+                                    </apex:pageBlockTable>
+              
+                                </apex:panelGrid>
+                                
+                                <div style="margin-top : 20px">
+                                <apex:commandButton value="Cancel" action="{!CancelDetailBid}" />
+                                </div>
+                                </center>
+                         </apex:outputPanel>
+         </apex:outputPanel>  
+
+        </div>  
+        
+       
+   <!--                    -->
+   <!-- ADD BID POPUP      -->
+   <!--                    -->    
+       
+
+<div>   
+         <apex:outputPanel id="tstpopup" rendered="{!showPopup}" >
+                        <apex:outputPanel styleClass="popupBackground" layout="block" />
+                            <apex:outputPanel styleClass="custPopup" layout="block" >
+                                <center>
+                                <head>
+                                    <h3>Add a new Bid on <span style="color:blue">{!campaign.Name}</span> for <span style="color:blue">{!ContactName}</span></h3>
+                                </head>
+                                
+                                <apex:panelGrid columns="4">  
+                                                               
+                                    <apex:outputLabel rendered="true"><b>Stage </b></apex:outputLabel>
+                                    <apex:selectList value="{!BidStage}" multiselect="false" size="1" id="BidStage">
+                                        <apex:selectOption itemValue="Indicative Bid" itemLabel="Indicative Bid"/>
+                                        <apex:selectOption itemValue="Final Round Bid" itemLabel="Final Round Bid"/>
+                                    </apex:selectList>
+                                              
+                                    <apex:outputLabel rendered="true"><b>Amount ($)</b></apex:outputLabel>
+                                    <apex:input id="BidAmount" value="{!BidAmount}" type="number"/>
+                                              
+                                    <apex:outputLabel rendered="true"><b>Capitalization </b></apex:outputLabel>
+                                    <apex:selectList id="BidCapitalization" value="{!BidCapitalization}" multiselect="false" size="1" >
+                                        <apex:selectOption itemValue="All-Cash" itemLabel="All-Cash"/>
+                                        <apex:selectOption itemValue="Financing" itemLabel="Financing"/>
+                                    </apex:selectList>
+                                              
+                                    <apex:outputLabel rendered="true"><b>Deposit (%)</b></apex:outputLabel>
+                                    <apex:input id="BidDeposit" value="{!BidDeposit}" type="number"/>
+                                    
+                                    <apex:outputLabel rendered="true"><b>Capitalization Notes </b></apex:outputLabel>
+                                    <apex:inputTextarea id="BidCapitalization_Notes" value="{!BidCapitalization_Notes}"/>
+                                              
+                                    <apex:outputLabel rendered="true"><b>Due Diligence Period </b></apex:outputLabel>
+                                    <apex:input id="BidDue_Diligence_Period" value="{!BidDue_Diligence_Period}" type="number"/>
+                                              
+                                    <apex:outputLabel rendered="true"><b>Exterior Homes Inspected </b></apex:outputLabel>
+                                    <apex:input id="BidExterior_Homes_Inspected" value="{!BidExterior_Homes_Inspected}" type="number"/>
+                                              
+                                    <apex:outputLabel rendered="true"><b>Interior Homes Inspected </b></apex:outputLabel>
+                                    <apex:input id="BidInterior_Homes_Inspected" value="{!BidInterior_Homes_Inspected}" type="number"/>
+                                              
+                                    <apex:outputLabel rendered="true"><b>Notes </b></apex:outputLabel>
+                                    <apex:inputTextarea id="BidNotes" value="{!BidNotes}"/>
+                                    
+                                    <apex:outputLabel rendered="true"><b>Num Properties</b></apex:outputLabel>
+                                    <apex:inputText id="BidNum_Properties" value="{!BidNum_Properties}"/>
+                                          
+                                    <apex:outputLabel rendered="true"><b>Bid Amount (Lower Bound)</b></apex:outputLabel>
+                                    <apex:input id="BidBid_Amount_Lower_Bound" value="{!BidBid_Amount_Lower_Bound}" type="number"/>
+                                    
+                                    <apex:outputLabel rendered="true"><b>Bid Amount (Upper Bound)</b></apex:outputLabel>
+                                    <apex:input id="BidBid_Amount_Upper_Bound" value="{!BidBid_Amount_Upper_Bound}" type="number"/>
+                                    
+                                    <apex:outputLabel rendered="true"><b>Num Homes Inspected (Unknown)</b></apex:outputLabel>
+                                    <apex:input id="BidNum_Homes_Inspected_Unknown" value="{!BidNum_Homes_Inspected_Unknown}" type="number"/>  
+                                    
+                                    <apex:outputLabel rendered="true"><b>Closing Period (Days)</b></apex:outputLabel>
+                                    <apex:input id="BidClosingPeriod" value="{!BidClosingPeriod}" type="number"/>  
+                                    
+                                    <apex:inputFile value="{!myfile.body}" filename="{!myfile.Name}" />
+                                    
+                                </apex:panelGrid>
+                                
+                                <div style="margin-top : 20px">
+                                <apex:commandButton value="Save"  action="{!SaveBid}" />
+                                <apex:commandButton value="Cancel" action="{!CancelBid}" />
+                                </div>
+                                </center>
+                         </apex:outputPanel>
+         </apex:outputPanel>  
+
+        </div>
+
+
+     </apex:pageBlock>
+     
+     
+   <!--                                              -->
+   <!--      TEMPLATES AND DOCUSIGN PAGEBLOCK        -->
+   <!--                                              -->   
+     
+        
+        <apex:pageBlock id="test" > 
+        
+            <div align="center" draggable="false" id="ScrollDownMarkup">
+            <apex:commandButton value="Send Template" action="{!runBatch}"  rendered="{!displayBtn_bool}"/>     
+            <apex:commandButton value="Send Docusign"  action="{!sendDocusignButton}"  rendered="{!displayBtn_bool}"/>      
+            <br></br><br></br>
+       
+            <div style="{!IF(displayBtn_bool = true, 'display:block;border: 1px solid lightgrey;margin-top: 10px ; margin-bottom: 10px ;  margin-left: 25%; margin-right: 25% ; padding: 10px;', 'display:none')}">
+            <apex:panelGrid columns="3" rendered="{!displayBtn_bool}">  
+              
+                <apex:outputLabel rendered="{!displayBtn_bool}"><b>Email Template Name </b></apex:outputLabel>
+                <apex:outputField value="{!campaign.Email_Template_Name__c}" id="templateName" label="Email Template Name"  rendered="{!displayBtn_bool}"> 
+                    <apex:inlineEditSupport showOnEdit="saveButton, cancelButton" hideOnEdit="editButton" event="ondblclick" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>                
+                </apex:outputField>
+                <apex:commandButton value="Save Template Name" action="{!SaveCampaign}" rendered="{!displayBtn_bool}"/>
+                
+                <apex:outputLabel rendered="{!displayBtn_bool}"><b>Carbon Copy</b></apex:outputLabel> 
+                <apex:outputField value="{!campaign.Email_Template_Carbon_Copy__c}" id="CarbonCopy" label="Carbon Copy Emails"  rendered="{!displayBtn_bool}"> 
+                    <apex:inlineEditSupport showOnEdit="saveButton, cancelButton" hideOnEdit="editButton" event="ondblclick" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>                
+                </apex:outputField> 
+                <apex:commandButton value="Save Carbon Copy Emails" action="{!SaveCampaign}" rendered="{!displayBtn_bool}"/>             
+                
+
+                <!-- break for section -->
+                <apex:outputLabel ><br></br></apex:outputLabel>
+                <apex:outputLabel ><br></br></apex:outputLabel>
+                <apex:outputLabel ><br></br></apex:outputLabel>
+                
+                <apex:outputLabel rendered="{!displayBtn_bool}"><b>Docusign Template Id  </b></apex:outputLabel>
+                <apex:outputField value="{!campaign.Docusign_Template_Id__c}" id="DocusignId" label="Docusign Template Id"  rendered="{!displayBtn_bool}"> 
+                    <apex:inlineEditSupport showOnEdit="saveButton, cancelButton" hideOnEdit="editButton" event="ondblclick" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>                
+                </apex:outputField>
+                <apex:commandButton value="Save Template Id" action="{!SaveCampaign}" rendered="{!displayBtn_bool}"/>
+                
+                <!-- break for section -->
+                <apex:outputLabel ><br></br></apex:outputLabel>
+                <apex:outputLabel ><br></br></apex:outputLabel>
+                <apex:outputLabel ><br></br></apex:outputLabel>
+                    
+                <apex:outputLabel rendered="{!displayBtn_bool}"><b>NDA Status  </b></apex:outputLabel> 
+                <apex:selectList multiselect="false" size="1" value="{!selectedStatus}" rendered="{!displayBtn_bool}">
+                    <apex:selectOptions value="{!StatusNames}">
+                    </apex:selectOptions>
+                </apex:selectList>
+                <apex:commandButton value="Save NDA Status" action="{!SaveStatus}" rendered="{!displayBtn_bool}"/>
+                  
+                <apex:outputLabel rendered="{!displayBtn_bool}"><b>Portfolio Status  </b></apex:outputLabel> 
+                <apex:selectList multiselect="false" size="1" value="{!Portfolio_selectedStatus}" rendered="{!displayBtn_bool}">
+                    <apex:selectOptions value="{!PortfolioStatusNames}">
+                    </apex:selectOptions>
+                </apex:selectList>  
+                <apex:commandButton value="Save Portfolio Status" action="{!SavePortfolioStatus}" rendered="{!displayBtn_bool}"/>
+                              
+                
+
+            </apex:panelGrid>
+            </div>
+            
+            <br></br><br></br>
+            <apex:outputText style="font-weight: bold;" value="{!selected_contacts_msg}"/><br></br><br></br>
+            </div>
+             <br></br><br></br><br></br> 
+
+            <apex:pageBlockTable value="{!SelectedContacts}" var="c" >
+            <apex:column value="{!c.Name}" />
+            
+            <apex:column value="{!c.CompanyOrAccount}" />
+            
+            <apex:column value="{!c.Email}" />
+            
+            <apex:column rendered="{!displayBtn_bool}">
+                <apex:facet name="header">Template Status</apex:facet> 
+                <font color="{!if(c.Template_Status__c = 'Sent', 'green','red')}">
+                <apex:outputtext value="{!c.Template_Status__c}"/>
+                </font>
+            </apex:column>
+            
+            <apex:column rendered="{!displayBtn_bool}">
+                <apex:facet name="header">NDA Status</apex:facet> 
+                <font color="{!if(c.NDA_Status__c = 'Not Sent', 'red','green')}"> 
+                <apex:outputtext value="{!c.NDA_Status__c}"/>
+                </font>
+            </apex:column>
+            
+            <apex:column rendered="{!displayBtn_bool}">
+                <apex:facet name="header">Portfolio Status</apex:facet> 
+                <font color="{!if(c.Portfolio_Status__c= 'Out', 'red','green')}"> 
+                <apex:outputtext value="{!c.Portfolio_Status__c}"/>
+                </font>
+            </apex:column>
+            
+            <apex:column rendered="{!displayBtn_bool}">
+                <apex:facet name="header">Bid Status</apex:facet> 
+                <font color="{!if(c.Bid_Status__c= 'Not Sent', 'red','green')}"> 
+                <apex:outputtext value="{!c.Bid_Status__c}"/>
+                </font>
+            </apex:column>
+            
+            <apex:column value="{!c.Notes__c}" />
+           
+            </apex:pageBlockTable>       
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

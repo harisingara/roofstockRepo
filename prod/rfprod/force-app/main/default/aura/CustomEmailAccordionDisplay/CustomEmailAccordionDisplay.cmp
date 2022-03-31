@@ -1,0 +1,96 @@
+<aura:component >
+	<aura:attribute name="lstSubject" type="Object[]"/>
+    <aura:attribute name="selectedSubject" type="Object"/>
+    <aura:attribute name="isSelected" type="Boolean" default="false"/>
+    <aura:attribute name="isRead" type="Boolean" default="true"/>
+    <aura:attribute name="email" type="Object"/>
+  <div class="slds-card">
+
+  <ul class="slds-accordion">
+       
+    <li class="slds-accordion__list-item">
+      <section class="{!v.isSelected ? 'slds-accordion__section slds-is-open': 'slds-accordion__section'}">
+        <div class="slds-clearfix slds-p-bottom_small slds-border_bottom" onclick="{!c.opensection}">
+            <!--div class="{!v.isRead ? 'slds-float_left':'slds-float_left boldcls'}">
+                <p>{!v.selectedSubject.Subject}</p>
+              </div>
+              <div class="slds-float_right">
+                <p><lightning:formattedUrl 
+                                value="{!v.selectedSubject.recordUrl}"
+                                label="{!v.selectedSubject.propertyName}" 
+                                target="_blank" /></p>
+              </div> -->
+            <div class="slds-float--left ">
+                    <lightning:icon class="{!v.isSelected ? 'slds-hide':'slds-show'}" aura:id="panelOne" iconName="utility:add" size="x-small" alternativeText="Indicates add"/>
+                    <lightning:icon class="{!v.isSelected ? 'slds-show':'slds-hide'}" aura:id="panelOne" iconName="utility:dash" size="x-small" alternativeText="Indicates dash"/>
+                </div> 
+            <div class="{!v.isRead ? '':'boldcls'}">
+           <lightning:layout >
+              
+              	<lightning:layoutItem size="5" padding="horizontal-medium" >
+                                   {!v.selectedSubject.propertyName}
+                </lightning:layoutItem>
+               
+               <lightning:layoutItem size="3" padding="horizontal-medium" alignmentBump="right">
+                   
+                        <lightning:formattedDateTime value="{!v.selectedSubject.MostRecentMsgdt}" year="numeric" month="numeric" day="numeric" hour="2-digit"
+                                 minute="2-digit"  hour12="true"/>
+                   
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem size="2" padding="horizontal-medium" alignmentBump="right">
+                   
+                    ({!v.selectedSubject.unReadCnt} / {!v.selectedSubject.emailE2AConversations.length})
+                    
+                    
+                </lightning:layoutItem>
+               <lightning:layoutItem size="2" padding="horizontal-medium" alignmentBump="right">
+                  <p><lightning:formattedUrl 
+                                value="{!v.selectedSubject.recordUrl}"
+                                label="Transaction Link" 
+                                target="_blank" /></p> 
+                </lightning:layoutItem>
+                
+               
+              </lightning:layout>
+           </div>
+        </div>
+        <div class="slds-accordion__content" id="referenceId-21">
+       <lightning:layout multipleRows="true" class="slds-p-top_small">
+                <lightning:layoutItem size="2" class="border" >
+                    <b>From Name</b>                   
+                </lightning:layoutItem>
+           		<lightning:layoutItem size="2" class="border" >
+                    <b>Message Date</b>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="7" class="border" >
+                    <div class="truncate">
+                        <b>Message</b>
+                    </div>
+                </lightning:layoutItem>  
+                 <lightning:layoutItem size="1" class="border" >
+                    <b>Status</b>                   
+                </lightning:layoutItem>
+                
+                
+            </lightning:layout>
+        <aura:iteration items="{!v.selectedSubject.subjectEmails}" var="subitem" indexVar="subindx">
+            <lightning:card  >      
+               <div class="slds-border_bottom"> <b> Subject : </b>
+                    {! subitem.Subject } 
+                </div>
+            
+             
+            <aura:iteration items="{!subitem.emailE2AConversations}" var="item" indexVar="indx"> 
+             <c:DisplayEmailListCMP dispemail="{!item}" selectedSubject="{!v.selectedSubject}" isRead="{!v.isRead}" email="{!v.email}" indx="{!indx}" />
+            
+            </aura:iteration>
+         </lightning:card>
+        </aura:iteration>
+        </div>
+      </section>
+    </li>
+    </ul>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,13 @@
+<apex:component controller="LeadInfoContact" access="global">  
+<style>
+        .headerStyle{text-align:left}
+</style>
+ <apex:pageBlock >
+    <apex:pageblocktable value="{!acct}" style="font-family: arial, sans-serif;font-size: 11px; text-align:left" var="info">            
+                <apex:column value="{!info.Lead_Interest__c}"/>
+                <apex:column value="{!info.LeadSource}" />
+                <apex:column value="{!info.How_did_you_hear_about_Roofstock__c}"/>
+                <apex:column value="{!info.ConvertedDate}"/>
+     </apex:pageblocktable>
+</apex:pageBlock>
+</apex:component>

@@ -1,0 +1,119 @@
+<apex:component access="global">
+        <style type="text/css">
+        table tr th {
+    font-size : 10px;
+    padding-bottom: 20px;
+    color: #000000 ;
+}
+
+table tr:last-child td {
+    padding-top: 20px;
+}
+
+
+.title-bar
+{
+  background-color: #192738;
+  color: #A2A8AF ;
+  padding: 20px;
+}
+.title-bar h2
+{
+  color: #E2E5E7;
+}
+
+
+.sub-title-bar
+{
+  padding: 20px;
+  background-color: #323E52;
+  color: #ACB0B9;
+}
+.sub-title-bar h5
+{
+  color: #FFFFFF;
+}
+.sub-title-bar h2
+{
+  color: #FFFFFF;
+}
+
+.text-container
+{
+  background-color: #3C4B73;  
+  color: #FFFFFF;
+  margin-top: 10px;
+  margin-right: -20px;
+  margin-left: 10px;
+  padding-bottom: 30px;
+}
+
+.text-container h5
+{
+  color: #ACB0B9;
+  font-weight: bolder;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.text-content
+{
+  padding-top: 10px;
+  padding-left: 50px;
+  padding-right: 30px;
+}
+.map-container
+{
+  background-color: #FFFFFF;  
+  margin-top: 10px;
+  margin-right: -20px;
+  margin-left: 10px;
+}
+
+.img-container
+{
+
+  background-color: #FFFFFF;  
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: px;
+}
+
+.img-content
+{
+  padding-top: 0px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 0px;
+}
+
+.title-array p
+{
+  background-color: #192738;
+  color: #A2A8AF ;
+  padding: 20px;
+  
+  margin-top: 10px;
+}
+.footer-bar
+{
+  background-color: #192738;
+  color: #E2E5E7 ;
+  padding: 20px;
+}
+
+.footer-bar h6
+{
+line-height: 0.5;
+  color: #E2E5E7;
+}
+
+.notes 
+{
+line-height: 0.5;
+  color: #ACB0B9;
+    font-size : 10px;
+    padding-top: 30px;
+}
+</style>
+</apex:component>
