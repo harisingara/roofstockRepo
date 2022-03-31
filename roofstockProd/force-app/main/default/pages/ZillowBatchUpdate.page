@@ -1,3 +1,0 @@
-<apex:page standardController="Property__c" extensions="ZillowBatchUpdateContExt"  recordSetVar="Properties" action="{!updateProperty}">
-    <apex:pageMessages />
-</apex:page>

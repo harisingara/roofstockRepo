@@ -1,3 +1,0 @@
-<apex:page standardController="Property__c" extensions="ZillowUpdateContExt" action="{!updateProperty}">
-    <apex:pageMessages />
-</apex:page>

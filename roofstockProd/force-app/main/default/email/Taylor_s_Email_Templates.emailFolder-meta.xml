@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
-    <accessType>Shared</accessType>
-    <name>Taylor&apos;s Email Templates</name>
-    <publicFolderAccess>ReadWrite</publicFolderAccess>
-    <sharedTo>
-        <roleAndSubordinates>Account_Coordinator</roleAndSubordinates>
-    </sharedTo>
-</EmailFolder>

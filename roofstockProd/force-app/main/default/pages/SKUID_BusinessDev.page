@@ -1,3 +1,0 @@
-<apex:page readonly="true" showheader="false" sidebar="false" doctype="html-5.0" title="Portal">
-    <skuid:page page="BD_Deal_Home" />
-</apex:page>

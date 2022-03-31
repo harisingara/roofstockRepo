@@ -1,4 +1,0 @@
-<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" >
-    <c:EmailDisplayListViewContainer>
-    </c:EmailDisplayListViewContainer>
-</aura:component>

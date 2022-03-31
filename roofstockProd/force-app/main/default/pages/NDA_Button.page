@@ -1,5 +1,0 @@
-<apex:page standardController="Campaign" extensions="DocusignTemplate" action="{!contactButton}">
-<apex:form >
-<apex:inputHidden value="{!campaign.Id}"/>
-</apex:form>
-</apex:page>

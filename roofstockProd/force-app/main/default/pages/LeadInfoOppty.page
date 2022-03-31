@@ -1,3 +1,0 @@
-<apex:page standardController="Opportunity" showHeader="true">
-    <c:LeadInfoOppty ></c:LeadInfoOppty>
-</apex:page>
