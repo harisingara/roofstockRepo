@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Assign this permission if a user needs manager level access for the Residential Support object like Coordinator assignment permission</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Violation__c.Coordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Residential Support Manage Permission</label>
+    <license>Salesforce</license>
+    <recordTypeVisibilities>
+        <recordType>Contact.HOA</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Contact.Title</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Contact.Vendor</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+</PermissionSet>
