@@ -1,0 +1,6 @@
+.THIS .selected{
+        background-color: darkgrey;
+}
+.THIS .slds-truncate {
+    white-space: normal;
+}

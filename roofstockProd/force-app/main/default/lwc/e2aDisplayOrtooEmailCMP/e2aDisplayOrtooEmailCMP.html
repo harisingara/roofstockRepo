@@ -1,0 +1,13 @@
+<template>
+    
+    <lightning-card title="Email Content" >
+        <template if:true={email.data}>
+            <div class="slds-m-around_medium">
+                <lightning-formatted-rich-text
+                    value={emailBody}>
+                </lightning-formatted-rich-text>
+            </div>
+        </template>
+    </lightning-card>
+
+</template>

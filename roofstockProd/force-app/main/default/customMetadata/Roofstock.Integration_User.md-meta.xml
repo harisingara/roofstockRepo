@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Integration User</label>
+    <protected>false</protected>
+    <values>
+        <field>BPM_URL__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>CFS_URL__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>MicroService_URL__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Password__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RS_One_URL__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RoofstockAuthToken_RS1__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RoofstockAuthToken_SellerFiles__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Roofstock_API_URL__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>User_Id__c</field>
+        <value xsi:type="xsd:string">0051C000009jS6JQAU</value>
+    </values>
+    <values>
+        <field>User_Name__c</field>
+        <value xsi:type="xsd:string">integration@roofstock.com</value>
+    </values>
+</CustomMetadata>

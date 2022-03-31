@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_Approved_Status</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Approved Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Entity_Verification_Status_Info</fullName>
+        <field>Status__c</field>
+        <literalValue>Needs more info</literalValue>
+        <name>Update Entity Verification Status Info</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Entity_Verification_Status_based</fullName>
+        <field>Outcome__c</field>
+        <literalValue>Approve Entity</literalValue>
+        <name>Update Entity Verification Status based</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Entity_Verification_Status_if_Fai</fullName>
+        <field>Status__c</field>
+        <literalValue>Not Approved</literalValue>
+        <name>Update Entity Verification Status if Fai</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status_For_Failed</fullName>
+        <field>Status__c</field>
+        <literalValue>Not Approved</literalValue>
+        <name>Update Status For Failed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update Entity%2FAI Verification Status if Approved</fullName>
+        <actions>
+            <name>Update_Approved_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ATF_Work_Queue__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Entity Verification Task,AI Task</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ATF_Work_Queue__c.Outcome__c</field>
+            <operation>equals</operation>
+            <value>Approve Entity,Approve for AI</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Entity%2FAI Verification Status if Failed</fullName>
+        <actions>
+            <name>Update_Status_For_Failed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ATF_Work_Queue__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Entity Verification Task,AI Task</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ATF_Work_Queue__c.Outcome__c</field>
+            <operation>equals</operation>
+            <value>Failed Entity,Failed for AI</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Entity%2FAI Verification Status if Needs info</fullName>
+        <actions>
+            <name>Update_Entity_Verification_Status_Info</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ATF_Work_Queue__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Entity Verification Task,AI Task</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ATF_Work_Queue__c.Outcome__c</field>
+            <operation>equals</operation>
+            <value>More info needed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

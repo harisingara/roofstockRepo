@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Lead_Offer_Submitted</fullName>
+        <description>Lead Offer Submitted</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Inventory/Lead_Offer_Submitted</template>
+    </alerts>
+    <alerts>
+        <fullName>Leasing_Send_Email_for_Application_Not_Started_Lead</fullName>
+        <description>Leasing - Send Email for Application Not Started (Lead)</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>noreply@streetlane.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Leasing/Leasing_First_Reminder_Lead</template>
+    </alerts>
+    <alerts>
+        <fullName>New_Lead_Created_from_Campaign</fullName>
+        <ccEmails>wsale@roofstock.com,</ccEmails>
+        <ccEmails>adriana@sfres1.com</ccEmails>
+        <description>New Lead Created from Campaign</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>acastillo@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>richard@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ysamy@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Retail_Sellers/Email_for_Richard_and_Yousef</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Amy_Lead_Change_Notification</fullName>
+        <description>Send Amy Lead Change Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>amy@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Owner_Update</template>
+    </alerts>
+    <alerts>
+        <fullName>Test_Email</fullName>
+        <description>Test Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Retail_Demand_Advisors/Deal_of_the_week</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Assign_Lead_to_Zach</fullName>
+        <description>Assigns the lead to Zach</description>
+        <field>OwnerId</field>
+        <lookupValue>roy@roofstock.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Assign Lead to Zach</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BB_Update_Assignment</fullName>
+        <field>OwnerId</field>
+        <lookupValue>SDR_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>BB Update Assignment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BypassToFalse</fullName>
+        <description>Updates BypassValidationForProcessBuilder back to FALSE after PB switched to TRUE</description>
+        <field>BypassValidationForProcessBuilder__c</field>
+        <literalValue>0</literalValue>
+        <name>BypassToFalse</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Date_First_Active_in_Sequence</fullName>
+        <field>First_Active_in_Sequence__c</field>
+        <formula>TODAY()</formula>
+        <name>Date First Active in Sequence</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lead_Created_Date_Update</fullName>
+        <field>Lead_Created_Date__c</field>
+        <formula>DATEVALUE(CreatedDate)</formula>
+        <name>Lead Created Date Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Leasing_Update_Lead_Interest</fullName>
+        <description>Leasing Update Lead Interest</description>
+        <field>Lead_Interest__c</field>
+        <literalValue>Leasing</literalValue>
+        <name>Leasing Update Lead Interest</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Nurture_Reason</fullName>
+        <description>Updates the nurture reason to No Contact</description>
+        <field>No_Convert_Reason__c</field>
+        <literalValue>Unable to make contact</literalValue>
+        <name>Nurture Reason</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Nurture</fullName>
+        <field>Status</field>
+        <literalValue>Nurture</literalValue>
+        <name>Set Nurture</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Company_Name</fullName>
+        <description>Update Company Name</description>
+        <field>Company</field>
+        <formula>FirstName + &quot; &quot; + LastName</formula>
+        <name>Update Company Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Empty_Mobile_On_Lead</fullName>
+        <field>MobilePhone</field>
+        <formula>Phone</formula>
+        <name>Update Empty Mobile On Lead</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Owner</fullName>
+        <field>OwnerId</field>
+        <lookupValue>richard@roofstock.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Update Owner</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_to_SDR_Queue</fullName>
+        <field>OwnerId</field>
+        <lookupValue>SDR_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Update to SDR Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Lead_Source</fullName>
+        <field>LeadSource</field>
+        <literalValue>Chili Piper</literalValue>
+        <name>update Lead Source</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>GF_Survey_Buyer60Inactive_7389fd19</fullName>
+        <apiVersion>39.0</apiVersion>
+        <endpointUrl>https://www.getfeedback.com/campaigns/S75zjmia/transactional_send</endpointUrl>
+        <fields>Email</fields>
+        <fields>FirstName</fields>
+        <fields>Id</fields>
+        <fields>LastName</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>vivek.visvanathan@roofstock.com</integrationUser>
+        <name>GF_Survey_Buyer60Inactive_7389fd19</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>BB Update Assignment</fullName>
+        <actions>
+            <name>BB_Update_Assignment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED( Bluebird__c ) &amp;&amp; Bluebird__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Bluebird</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Lead.Bluebird__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>When &apos;bluebird&apos; is checked on lead, reassigns the lead to Zach Evanish</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Chili Piper Auto-Assign Source</fullName>
+        <actions>
+            <name>update_Lead_Source</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.CreatedById</field>
+            <operation>equals</operation>
+            <value>Alaia Schwegler</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Lead - Update Empty Mobile</fullName>
+        <actions>
+            <name>Update_Empty_Mobile_On_Lead</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISBLANK(MobilePhone)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Lead Active in Sequence</fullName>
+        <actions>
+            <name>Date_First_Active_in_Sequence</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(  ISNULL(First_Active_in_Sequence__c) , NOT(PRIORVALUE( Active_in_Sequence__c )) , Active_in_Sequence__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Lead Offer Submitted</fullName>
+        <actions>
+            <name>Lead_Offer_Submitted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Send email to Lead Owner when Lead Offer Submitted Date updated.</description>
+        <formula>AND (  ISCHANGED( Made_An_Offer_Date__c ) ,  NOT( ISBLANK( Made_An_Offer_Date__c ) ) ,  RecordType.Name = &quot;Retail Buyer&quot; ,  Owner:Queue.QueueName  &lt;&gt; &quot;SDR Queue&quot; )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Leasing - No Application - First reminder %28Lead%29 %28Deactivated%29</fullName>
+        <active>false</active>
+        <description>Leasing - No Application - First reminder (Lead)</description>
+        <formula>AND( RecordType.Name=&apos;Leasing&apos;,  NOT ISBLANK(Email),  NOT HasOptedOutOfEmail)</formula>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_Send_Email_for_Application_Not_Started_Lead</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_First_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Lead.CreatedDate</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing - No Application - First reminder v2 %28Lead%29</fullName>
+        <active>false</active>
+        <description>Leasing - No Application - First reminder (Lead) after 4 hours from lead created date</description>
+        <formula>AND( RecordType.Name=&apos;Leasing&apos;,  NOT ISBLANK(Email),  NOT HasOptedOutOfEmail)</formula>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_Send_Email_for_Application_Not_Started_Lead</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_First_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Lead.CreatedDate</offsetFromField>
+            <timeLength>4</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing Company Name</fullName>
+        <actions>
+            <name>Update_Company_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Leasing Company Name</description>
+        <formula>AND (        RecordType.Name = &quot;Leasing&quot; ,  NOT( ISBLANK( LastName  ) )  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Leasing Lead Interest</fullName>
+        <actions>
+            <name>Leasing_Update_Lead_Interest</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Leasing Lead Interest</description>
+        <formula>AND ( RecordType.Name = &quot;Leasing&quot; , ISBLANK(TEXT( Lead_Interest__c ) ) )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Leasing Task Creation on Lead</fullName>
+        <actions>
+            <name>New_Lead</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Lead.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Leasing</value>
+        </criteriaItems>
+        <description>Leasing - Task Creation on Lead</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Remove BypassValidationForProcessBuilder</fullName>
+        <actions>
+            <name>BypassToFalse</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Sets flag back to FALSE after SQL Date is populated</description>
+        <formula>NOT(ISBLANK(SQL_Date__c))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Sellers_for Richard and Yousef</fullName>
+        <actions>
+            <name>New_Lead_Created_from_Campaign</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Lead.HS_Original_Source_DD1__c</field>
+            <operation>contains</operation>
+            <value>2018-11-27 EV</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.HS_Original_Source_DD2__c</field>
+            <operation>contains</operation>
+            <value>2018-11-27 EV</value>
+        </criteriaItems>
+        <description>Email Richard and Yousef when leads enters the queue</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Lead Created Date</fullName>
+        <actions>
+            <name>Lead_Created_Date_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update the field with the DateValue of the createdDate field of the Lead</description>
+        <formula>NOT(ISBLANK(CreatedDate))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Lead Owner to Richard</fullName>
+        <actions>
+            <name>Update_Owner</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Retail Seller</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Property_State__c</field>
+            <operation>equals</operation>
+            <value>MO,NC</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update to SDR Queue</fullName>
+        <actions>
+            <name>Update_to_SDR_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.CreatedDate</field>
+            <operation>greaterOrEqual</operation>
+            <value>2/4/2021</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Retail Buyer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Phone</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Leasing_No_Application_First_reminder_Email_Sent</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Leasing - No Application - First reminder Email Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>New_Lead</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>1</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Lead.Lead_Created_Date__c</offsetFromField>
+        <priority>Medium</priority>
+        <protected>false</protected>
+        <status>Open</status>
+        <subject>New Lead</subject>
+    </tasks>
+</Workflow>

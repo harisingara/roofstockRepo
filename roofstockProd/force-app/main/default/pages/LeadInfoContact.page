@@ -1,0 +1,3 @@
+<apex:page standardController="Contact" showHeader="true">
+    <c:LeadInfoContact ></c:LeadInfoContact>
+</apex:page>

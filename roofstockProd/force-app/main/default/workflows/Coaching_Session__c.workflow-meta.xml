@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Submit_RSA_Coaching_Survey_Email</fullName>
+        <description>Submit RSA Coaching Survey Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Member_Email_From_Contact__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>dean.west@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>malbaum@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ryan.minekime@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tom@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Survey_Post_Coaching_Session</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Update_Email</fullName>
+        <field>Member_Email_From_Contact__c</field>
+        <formula>Enrollment__r.Email__c</formula>
+        <name>Update Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Email_Promotional_Coaching</fullName>
+        <field>Member_Email_From_Contact__c</field>
+        <formula>Contact_Promotional_Coaching__r.Email</formula>
+        <name>Update Email Promotional Coaching</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>New Promotional Coaching Session</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Coaching_Session__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Promotional Coaching Session</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Coaching_Session__c.Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Document that session has occurred</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Email Survey</fullName>
+        <actions>
+            <name>Submit_RSA_Coaching_Survey_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Coaching_Session__c.Submit_Survey_Questionnaire__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Email</fullName>
+        <actions>
+            <name>Update_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Coaching_Session__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Coaching_Session__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Member Coaching Session</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Email Promotional Coach</fullName>
+        <actions>
+            <name>Update_Email_Promotional_Coaching</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Coaching_Session__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Coaching_Session__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Promotional Coaching Session</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,149 @@
+<template>
+<lightning-card>
+        <lightning-record-edit-form object-api-name="Job__c" record-type-id={recordTypeId} onsubmit={handleSubmit} onsuccess={handleSuccess}>
+            <div class="slds-scrollable" style="height:250px">
+                <div class="slds-modal__header slds-align_absolute-center">
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create Renovation</h2>
+                    </div>
+            <div class="c-container">
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Name"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Lockbox_Code__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Property__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Self_Showing_Lockbox__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Property_Unit__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Sign_in_Yard__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Job_Status__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Ready_for_Pictures__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                
+                <h3 class="slds-section-title--divider">Rennovation Overview</h3>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Job_Manager__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="QC_Link__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box">
+                            <lightning-input-field field-name="Actual_Job_End_Date__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Job_Type__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Rehab_Start_Date__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="QC_Date__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Estimated_Completion_Date__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box"><lightning-input-field field-name="Change_Order_Cost__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    
+                </lightning-layout>
+                
+                <lightning-layout multiple-rows="true">
+                    
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box">
+                            <lightning-input-field field-name="Inspection_Link__c"></lightning-input-field>
+
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <h3 class="slds-section-title--divider">Utilities</h3>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box">
+                            <lightning-input-field field-name="Utilities_Coordinator__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box">
+                            <lightning-input-field field-name="Date_Utilities_On__c"></lightning-input-field>
+
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box">
+                            <lightning-input-field field-name="Utilities_On__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box">
+                            <lightning-input-field field-name="Utility_Notes__c"></lightning-input-field>
+
+                        </div>
+                    </lightning-layout-Item>
+                </lightning-layout>
+                <h3 class="slds-section-title--divider">Notes</h3>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-Item size="6" padding="around-small">
+                        <div class="custom-box">
+                            <lightning-input-field field-name="Job_Notes__c"></lightning-input-field>
+                        </div>
+                    </lightning-layout-Item>
+                    
+                </lightning-layout>
+
+            </div>
+        </div>
+        <div class="slds-modal__footer slds-align_absolute-center">
+            <lightning-button class="slds-m-top_small" type="submit" label="Save">
+            </lightning-button>
+        </div>
+        </lightning-record-edit-form>
+        
+</lightning-card>
+</template>

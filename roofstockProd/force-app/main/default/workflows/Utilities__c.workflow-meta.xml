@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_Activated_Date</fullName>
+        <field>Activated_Date__c</field>
+        <formula>Today()</formula>
+        <name>Update Activated Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Utility_ID</fullName>
+        <field>Utility_ID__c</field>
+        <formula>Property_Unit__r.PropertyUnitId__c</formula>
+        <name>Update Utility ID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Utilities_Assigned_Date</fullName>
+        <description>Assigned Date will populate on status change to Assigned or In Progress</description>
+        <field>Assigned_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Utilities Assigned Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update Utility ID if Blank</fullName>
+        <actions>
+            <name>Update_Utility_ID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Utilities__c.Utility_ID__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Utilities - Update Activated Status</fullName>
+        <actions>
+            <name>Update_Activated_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Utilities__c.Utilities_Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Utilities - Update Assigned Status</fullName>
+        <actions>
+            <name>Utilities_Assigned_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Utilities__c.Utilities_Status__c</field>
+            <operation>equals</operation>
+            <value>Assigned,In Progress</value>
+        </criteriaItems>
+        <description>Fill Assigned Date field on the Utilities object when the status equals Assigned</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

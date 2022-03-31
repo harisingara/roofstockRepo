@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>1031 buyer lead</fullName>
+        <active>false</active>
+    </assignmentRule>
+    <assignmentRule>
+        <fullName>BBs</fullName>
+        <active>false</active>
+        <ruleEntry>
+            <assignedTo>amy@roofstock.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.Bluebird__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </criteriaItems>
+        </ruleEntry>
+    </assignmentRule>
+    <assignmentRule>
+        <fullName>Crowd Funnel Assignment</fullName>
+        <active>false</active>
+    </assignmentRule>
+    <assignmentRule>
+        <fullName>Lead Assign</fullName>
+        <active>false</active>
+        <ruleEntry>
+            <assignedTo>Roofstock_One</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>equals</operation>
+                <value>Roofstock One</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Direct_Mail</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+            <criteriaItems>
+                <field>Lead.LeadSource</field>
+                <operation>equals</operation>
+                <value>Direct Mail-Q1-2019</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>equals</operation>
+                <value>Selling Properties</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Direct_Buy_Lead__c</field>
+                <operation>equals</operation>
+                <value>Yes</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SDR_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>contains</operation>
+                <value>Portfolio Services,1031,IRA,Investment Properties,Buying Properties</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.LeadSource</field>
+                <operation>notEqual</operation>
+                <value>Calendly</value>
+            </criteriaItems>
+            <template>unfiled$public/LeadsNewassignmentnotificationSAMPLE</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SDR_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>equals</operation>
+                <value>Fund</value>
+            </criteriaItems>
+            <template>unfiled$public/LeadsNewassignmentnotificationSAMPLE</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Broker_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>contains</operation>
+                <value>Licensed Broker Referral,Inviting Clients as a Broker or Agent</value>
+            </criteriaItems>
+            <template>unfiled$public/LeadsNewassignmentnotificationSAMPLE</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>richard@roofstock.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>contains</operation>
+                <value>Seller Services,Selling Properties</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.LeadSource</field>
+                <operation>notEqual</operation>
+                <value>Calendly</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SDR_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>contains</operation>
+                <value>Investment property,Portfolio Services,1031</value>
+            </criteriaItems>
+            <template>unfiled$public/LeadsNewassignmentnotificationSAMPLE</template>
+        </ruleEntry>
+    </assignmentRule>
+    <assignmentRule>
+        <fullName>Leasing%2C Seller%2C SDR%2C RS1%2C CA</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>daria.davydenko@roofstock.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Roofstock One</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SDR_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 AND 2 AND 3</booleanFilter>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>contains</operation>
+                <value>Portfolio Services,1031,IRA,Investment Properties,Buying Properties,Investment property,Fund,One</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.LeadSource</field>
+                <operation>notEqual</operation>
+                <value>Calendly</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Lead_Interest__c</field>
+                <operation>notContain</operation>
+                <value>Inviting,Selling,Broker,Community</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>mwoodling@roofstock.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.Certified_Roofstock_Agent__c</field>
+                <operation>equals</operation>
+                <value>Yes</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>integration@roofstock.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Lead.LeadSource</field>
+                <operation>equals</operation>
+                <value>Chatbot</value>
+            </criteriaItems>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

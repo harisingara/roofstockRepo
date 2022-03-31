@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Create_New_Case</name>
+        <label>Create New Case</label>
+        <locationX>304</locationX>
+        <locationY>190</locationY>
+        <actionName>Case_From_Knowledge_Center</actionName>
+        <actionType>quickAction</actionType>
+        <inputParameters>
+            <name>ContactId</name>
+        </inputParameters>
+        <inputParameters>
+            <name>Description</name>
+            <value>
+                <elementReference>Description_of_Case</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Subject</name>
+            <value>
+                <elementReference>Description_of_Case</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>Create Case From Knowledge Center {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Create Case From Knowledge Center</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Add_Name_Case_Details</name>
+        <label>Add Name &amp; Case Details</label>
+        <locationX>165</locationX>
+        <locationY>179</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Create_New_Case</targetReference>
+        </connector>
+        <fields>
+            <name>Name</name>
+            <dataType>String</dataType>
+            <fieldText>Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Email</name>
+            <extensionName>flowruntime:email</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Description_of_Case</name>
+            <dataType>String</dataType>
+            <fieldText>Description of Issue</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>40</locationY>
+        <connector>
+            <targetReference>Add_Name_Case_Details</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+</Flow>

@@ -1,0 +1,18 @@
+{
+   "id": "RichTextEdit_withImage",
+   "components": [
+      {
+         "id": "richTextEdit_withImage"
+      }
+   ],
+   "js": [
+      {
+         "path": "runtime.js"
+      }
+   ],
+   "css": [
+      {
+         "path": "runtime.css"
+      }
+   ]
+}

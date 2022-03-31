@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Survey_Name_Update</fullName>
+        <field>Name</field>
+        <formula>Name_Webinar__c &amp;&quot; - &quot;&amp; RecordType.Name</formula>
+        <name>Survey Name Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>RSA Created with Enrollment</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>RSA_Survey__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Member Orientation</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>RSA Survey Created</fullName>
+        <actions>
+            <name>Survey_Name_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>RSA_Survey__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Post Webinar Survey</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

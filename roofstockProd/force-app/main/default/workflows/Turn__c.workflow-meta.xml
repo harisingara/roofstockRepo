@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_Streetlane_Marketing_Email_Alert</fullName>
+        <description>Send Streetlane Marketing Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ernesto@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>noreply@streetlane.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Streetlane_Marketing_Email</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Turn_Update_Status_to_Compleete</fullName>
+        <field>Status__c</field>
+        <literalValue>Completed</literalValue>
+        <name>Turn - Update Status_to_Complete</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Turn_Update_Status_to_In_Progress</fullName>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>Turn- Update Status to In Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Turn_Status_To_Upcoming</fullName>
+        <field>Status__c</field>
+        <literalValue>Upcoming</literalValue>
+        <name>Update Turn Status To Upcoming</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>temp_todlete</fullName>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>temp -todlete</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Turn- Update Status to In Progress</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Turn__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Upcoming</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Turn__c.Move_Out_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Turn__c.Completed__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>update status to In progress after move out date</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Turn_Update_Status_to_In_Progress</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Turn__c.Move_Out_Date__c</offsetFromField>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Turn- Update Status to completed</fullName>
+        <actions>
+            <name>Turn_Update_Status_to_Compleete</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Turn__c.Completed__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Turn Status</fullName>
+        <actions>
+            <name>Update_Turn_Status_To_Upcoming</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update Turn Status</description>
+        <formula>AND(ISCHANGED(Move_Out_Date__c),ISPICKVAL(Status__c, &quot;In Progress&quot;),Move_Out_Date__c &gt;  TODAY())</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

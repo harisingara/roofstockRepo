@@ -1,0 +1,78 @@
+<template>
+    <div class="slds-modal__header slds-align_absolute-center">
+        <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Send Email</h2>
+    </div>
+    <div class="slds-scrollable" style="height:380px">
+        <template if:true={isLoading}>
+            <div class="slds-p-around_x-small">
+                <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+    <!--<div class="slds-form slds-m-around_medium">-->
+    <div class="slds-form slds-m-around_medium slds-form_horizontal">
+        <div class="slds-form-element slds-form-element_horizontal">
+            <label class="slds-form-element__label" for="horizontal-input-id-01">From</label>
+            <div class="slds-form-element__control">
+                <lightning-input class = "from" name="from" read-only="true" value={from} label="" ></lightning-input>
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_horizontal">
+            <label class="slds-form-element__label" for="horizontal-input-id-02">
+                <abbr class="slds-required" title="required">* </abbr>To</label>
+            <div class="slds-form-element__control">
+                <lightning-input class = "to" name="to" value={toEmail} label="" ></lightning-input>
+                    
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_horizontal">
+            <label class="slds-form-element__label" for="horizontal-input-id-02">
+                Cc</label>
+            <div class="slds-form-element__control">
+                <lightning-input class = "cc" name="cc" value={ccEmail} label="" ></lightning-input>
+                    
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_horizontal">
+            <label class="slds-form-element__label" for="horizontal-input-id-02">
+                Cc</label>
+            <div class="slds-form-element__control">
+                <lightning-input class = "bcc" name="bcc" value={bccEmail} label="" ></lightning-input>
+                    
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_horizontal">
+            <label class="slds-form-element__label" for="horizontal-input-id-02">Subject</label>
+            <div class="slds-form-element__control">
+                <lightning-input class = "subject" name="subject" value={subject} label=""></lightning-input>
+            </div>
+        </div>
+        <div class="slds-form-element slds-form-element_horizontal">
+            <div class="slds-form-element__control">
+                <abbr class="slds-required" title="required">* </abbr>
+                <lightning-input-rich-text class = "body" value={body}> </lightning-input-rich-text> 
+            </div>
+        </div>
+    
+    </div>
+    
+    <div class="slds-m-around_small">
+        <lightning-input label="" name="file uploader" onchange={handleFileChange} type="file" multiple></lightning-input>
+    </div>
+
+    <div class="slds-m-around_small">
+        <template if:true={fileNames}>
+            <template for:each={fileNames} for:item="fname">
+                <p key={fname.name}>
+                    {fname.name}
+                </p>
+            </template>
+        </template>
+    </div>
+    
+    </div>
+    <div class="slds-modal__footer slds-align_absolute-center">
+        <lightning-button class="slds-m-around_small" type="Send" variant="brand" onclick={handleClick} label="Send"></lightning-button>
+        <lightning-button class="slds-m-around_small" type="Cancel" variant="brand" onclick={closeQAction} label="Cancel"></lightning-button>
+    </div>
+</template>

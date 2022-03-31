@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Roofstock</label>
+    <protected>false</protected>
+    <values>
+        <field>BPM_URL__c</field>
+        <value xsi:type="xsd:string">https://bpm.roofstock.com</value>
+    </values>
+    <values>
+        <field>CFS_URL__c</field>
+        <value xsi:type="xsd:string">https://www.roofstock.com</value>
+    </values>
+    <values>
+        <field>MicroService_URL__c</field>
+        <value xsi:type="xsd:string">https://production-kube.roofstock.com</value>
+    </values>
+    <values>
+        <field>Password__c</field>
+        <value xsi:type="xsd:string">Ba581422-451e-4ea1-a301-1e2f18e18334</value>
+    </values>
+    <values>
+        <field>RS_One_URL__c</field>
+        <value xsi:type="xsd:string">https://bpm.roofstock.com/one/admin</value>
+    </values>
+    <values>
+        <field>RoofstockAuthToken_RS1__c</field>
+        <value xsi:type="xsd:string">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3lzdGVtLnNhbGVzZm9yY2UuYXBpQHJvb2ZzdG9jay5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJTeXN0ZW0gU2FsZXNmb3JjZSBBcGkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEwNCIsIkFjY291bnRJZCI6IjEiLCJVc2VySWQiOiIxMDQiLCJSZWdBY2NvdW50SWQiOiIxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIkNGUyBQcm9wZXJ0aWVzIEV4cG9ydCIsIlJlY2VpdmUgT2ZmZXIgRW1haWxzIiwiUm9vZiBTYXZ2eSIsIlJvb2ZzdG9jayIsIlJvb2ZzdG9jayBMaXN0aW5nIEFnZW50IiwiU2VsZiBNYW5hZ2UgT2ZmZXJzIiwiU2VsbGVyIl0sIkJ1eWVyTWdtdEFjY291bnRJZHMiOiIxMjAwMCwxMjAwMiwxMjAwNCwxMjAwNiwxMjAxMCwxMjAxMiwxMjAxNCIsIlNlbGxlck1nbXRBY2NvdW50SWRzIjoiMTIwMDEsMTIwMDMsMTIwMDUsMTIwMDcsMTIwMTAsMTIwMTMsMTIwMTUiLCJleHAiOjE5MjMwOTEyMDAsImlzcyI6Imh0dHBzOi8vd3d3LnJvb2ZzdG9jay5jb20vand0IiwiYXVkIjoiaHR0cHM6Ly93d3cucm9vZnN0b2NrLmNvbS9qd3QifQ.CDcZ-fSXg320mm94bZxvy9W_RHYkJnPkVMzo_G2Xmrc</value>
+    </values>
+    <values>
+        <field>RoofstockAuthToken_SellerFiles__c</field>
+        <value xsi:type="xsd:string">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3lzdGVtLnNhbGVzZm9yY2UuYXBpQHJvb2ZzdG9jay5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJTeXN0ZW0gU2FsZXNmb3JjZSBBcGkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEwNCIsIkFjY291bnRJZCI6IjEiLCJVc2VySWQiOiIxMDQiLCJSZWdBY2NvdW50SWQiOiIxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIkNGUyBQcm9wZXJ0aWVzIEV4cG9ydCIsIlJlY2VpdmUgT2ZmZXIgRW1haWxzIiwiUm9vZiBTYXZ2eSIsIlJvb2ZzdG9jayIsIlJvb2ZzdG9jayBMaXN0aW5nIEFnZW50IiwiU2VsZiBNYW5hZ2UgT2ZmZXJzIiwiU2VsbGVyIl0sIkJ1eWVyTWdtdEFjY291bnRJZHMiOiIxMjAwMCwxMjAwMiwxMjAwNCwxMjAwNiwxMjAxMCwxMjAxMiwxMjAxNCIsIlNlbGxlck1nbXRBY2NvdW50SWRzIjoiMTIwMDEsMTIwMDMsMTIwMDUsMTIwMDcsMTIwMTAsMTIwMTMsMTIwMTUiLCJleHAiOjE5MjMwOTEyMDAsImlzcyI6Imh0dHBzOi8vd3d3LnJvb2ZzdG9jay5jb20vand0IiwiYXVkIjoiaHR0cHM6Ly93d3cucm9vZnN0b2NrLmNvbS9qd3QifQ.CDcZ-fSXg320mm94bZxvy9W_RHYkJnPkVMzo_G2Xmrc</value>
+    </values>
+    <values>
+        <field>Roofstock_API_URL__c</field>
+        <value xsi:type="xsd:string">https://api.roofstock.com</value>
+    </values>
+    <values>
+        <field>User_Id__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>User_Name__c</field>
+        <value xsi:type="xsd:string">system.salesforce@roofstock.com</value>
+    </values>
+</CustomMetadata>

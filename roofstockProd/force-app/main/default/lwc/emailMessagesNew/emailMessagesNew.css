@@ -1,0 +1,11 @@
+.sub-css {
+    --sds-c-accordion-summary-color-background:rgb(234, 235, 237);
+}
+
+.slds-modal__container {
+    max-width: 80rem !important;
+    width: 100% !important;
+}
+.slds-rich-text-editor__toolbar{
+    display:none !important;
+}

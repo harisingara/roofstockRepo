@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Closing_Wire_Request_Email</fullName>
+        <ccEmails>acquisitions@roofstock.com</ccEmails>
+        <description>Closing Wire Request Email</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>acastillo@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>accounting@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gwen.rs@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Closing_Wire_Request_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>EMD_Wire_Request</fullName>
+        <description>EMD Wire Request</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>acastillo@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>accounting@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gwen.rs@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/EMD_Wire_Request_Email</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>ABA_Routing_Number</fullName>
+        <field>Beneficiary_ABA_or_Routing_Number__c</field>
+        <formula>&quot;053100300&quot;</formula>
+        <name>ABA/Routing Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ABA_Routing_Number_Community</fullName>
+        <field>Beneficiary_ABA_or_Routing_Number__c</field>
+        <formula>&quot;111102758&quot;</formula>
+        <name>ABA/Routing Number (Community)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ABA_Routing_Number_Investor</fullName>
+        <field>Beneficiary_ABA_or_Routing_Number__c</field>
+        <formula>&quot;042000314&quot;</formula>
+        <name>ABA/Routing Number (Investor)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ABA_Routing_Number_OSN</fullName>
+        <field>Beneficiary_ABA_or_Routing_Number__c</field>
+        <formula>&quot;0260-0959-3&quot;</formula>
+        <name>ABA/Routing Number (OSN)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Account_Number</fullName>
+        <field>Beneficiary_Account__c</field>
+        <formula>&quot;009062587370&quot;</formula>
+        <name>Account Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Account_Number_Community</fullName>
+        <field>Beneficiary_Account__c</field>
+        <formula>&quot;205113745&quot;</formula>
+        <name>Account Number (Community)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Account_Number_Investor</fullName>
+        <field>Beneficiary_Account__c</field>
+        <formula>&quot;07903504418&quot;</formula>
+        <name>Account Number (Investor)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Account_Number_OSN</fullName>
+        <field>Beneficiary_Account__c</field>
+        <formula>&quot;1235079717&quot;</formula>
+        <name>Account Number (OSN)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Address</fullName>
+        <field>Beneficiary_Address__c</field>
+        <formula>&quot;2170 Satellite Blvd, Suite 375&quot; &amp; BR() &amp;
+&quot;Duluth, GA 30097&quot;</formula>
+        <name>Beneficiary Address</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Address_Community</fullName>
+        <field>Beneficiary_Address__c</field>
+        <formula>&quot;Origin Bank&quot;&amp;BR()&amp;&quot;500 S Service Road E&quot;&amp;BR()&amp;&quot;Ruston, LA 71270&quot;</formula>
+        <name>Beneficiary Address (Community)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Address_Investor</fullName>
+        <field>Beneficiary_Address__c</field>
+        <formula>&quot;8580 Cedar Place Drive., Suite 117&quot; &amp; BR() &amp; 
+&quot;Indianapolis, IN 46240&quot;</formula>
+        <name>Beneficiary Address (Investor)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Address_OSN</fullName>
+        <field>Beneficiary_Address__c</field>
+        <formula>&quot;6500 Pinecrest, Ste. 600&quot; &amp; BR() &amp;
+&quot;Plano, TX 75024&quot;</formula>
+        <name>Beneficiary Address (OSN)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Name</fullName>
+        <field>Beneficiary_Name__c</field>
+        <formula>&quot;O&apos;Kelley &amp; Sorohan, Attorneys at Law, LLC&quot;</formula>
+        <name>Beneficiary Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Name_Community</fullName>
+        <field>Beneficiary_Name__c</field>
+        <formula>&quot;Community National Title, LLC -  Escrow Account&quot;</formula>
+        <name>Beneficiary Name (Community)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Name_Investor</fullName>
+        <field>Beneficiary_Name__c</field>
+        <formula>&quot;Investor Title Service, Inc.&quot;</formula>
+        <name>Beneficiary Name (Investor)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Beneficiary_Name_OSN</fullName>
+        <field>Beneficiary_Name__c</field>
+        <formula>&quot;Fidelity National Agency Solutions,&quot; &amp; BR() &amp;
+&quot;A Division of Chicago Title Company&quot;</formula>
+        <name>Beneficiary Name (OSN)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Closing Wire Request</fullName>
+        <actions>
+            <name>Closing_Wire_Request_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Wire_Request__c.Purposed__c</field>
+            <operation>equals</operation>
+            <value>Close of Escrow</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMD Wire Request</fullName>
+        <actions>
+            <name>EMD_Wire_Request</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Wire_Request__c.Purposed__c</field>
+            <operation>equals</operation>
+            <value>EMD</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Wire Information - Community</fullName>
+        <actions>
+            <name>ABA_Routing_Number_Community</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Account_Number_Community</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Address_Community</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Name_Community</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Wire_Request__c.Beneficiary_List__c</field>
+            <operation>equals</operation>
+            <value>Community</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Wire Information - Investor</fullName>
+        <actions>
+            <name>ABA_Routing_Number_Investor</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Account_Number_Investor</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Address_Investor</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Name_Investor</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Wire_Request__c.Beneficiary_List__c</field>
+            <operation>equals</operation>
+            <value>Investor</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Wire Information - OKS</fullName>
+        <actions>
+            <name>ABA_Routing_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Account_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Address</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Wire_Request__c.Beneficiary_List__c</field>
+            <operation>equals</operation>
+            <value>OKS</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Wire Information - OSN</fullName>
+        <actions>
+            <name>ABA_Routing_Number_OSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Account_Number_OSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Address_OSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Beneficiary_Name_OSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Wire_Request__c.Beneficiary_List__c</field>
+            <operation>equals</operation>
+            <value>OSN</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

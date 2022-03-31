@@ -1,0 +1,103 @@
+<template>
+    <lightning-card class="slds-grid_vertical-stretch">
+        <div class="slds-m-around_medium">
+
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" size="medium">
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Closed</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Search Rental
+                            Listings</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-layout vertical-align="center" class="x-large btm-brdr">
+                            <lightning-layout-item size="5" flexibility="auto" padding="around-small">
+                                <lightning-input type="text" value={sValAddress} label="Address"
+                                    onchange={updateSeachKeyAddress} placeholder="Address"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="3" flexibility="auto" padding="around-small">
+                                <template if:true={MarketPicklistValues.data}>
+                                    <lightning-combobox name="progress" label="Market" value={sValMarket}
+                                        placeholder="-Select-" options={MarketPicklistValues.data.values}
+                                        onchange={updateSearchKeyMarket}>
+                                    </lightning-combobox>
+                                </template>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout vertical-align="center" class="x-large btm-brdr">
+                            <lightning-layout-item size="1" flexibility="auto" padding="around-small">
+                                <lightning-input type="text" value={sValBed} label="Bed" onchange={updateSeachKeyBed}
+                                    placeholder="Bed"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="1" flexibility="auto" padding="around-small">
+                                <lightning-input type="text" value={sValBath} label="Bath" onchange={updateSeachKeyBath}
+                                    placeholder="Bath"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item flexibility="auto" padding="around-small" size="3">
+                                <template if:true={StatusPicklistValues.data}>
+                                    <lightning-combobox name="progress1" label="Status" value={sValStatus}
+                                        placeholder="-Select-" options={StatusPicklistValues.data.values}
+                                        onchange={updateSearchKeyStatus}>
+                                    </lightning-combobox>
+                                </template>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout vertical-align="center" class="x-large btm-brdr">
+                            <lightning-layout-item flexibility="auto" padding="around-small" size="1">
+                                <lightning-button label="Search" disabled={loading} onclick={handleSearch}
+                                    variant="brand">
+                                </lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout vertical-align="center" class="x-large btm-brdr">
+                            <lightning-layout-item flexibility="auto" padding="around-small" size="12">
+                                <!-- custom data table(with SLDS style) to display Rental listing  -->
+                                <template if:true={showPage}>
+                                    <lightning-datatable key-field="Id" data={rentalListings} columns={columns}>
+                                    </lightning-datatable>
+                                    <p class="slds-m-vertical_medium content">
+                                        Total records: <b>({totalRecords}) </b> Page <b>{currentPage}</b> of <b>
+                                            {totalPages}</b></p>
+                                </template>
+                                <template if:true={showNoRecords}>
+                                    <div class="slds-p-top_large">
+                                        No listing records to display, Please change your search filter and try again.
+                                    </div>
+                                </template>
+                                <template if:true={error}>
+                                    {error}>
+                                </template>
+                                <template if:true={showPage}>
+                                    <div class="slds-p-around_large">
+                                        <c-paginator-bottom onprevious={handlePrevious} onnext={handleNext}
+                                            onfirst={handleFirst} onlast={handleLast} currentpage={page}
+                                            totalrecords={totalRecords} pagesize={pageSize}>
+                                        </c-paginator-bottom>
+                                    </div>
+                                </template>
+
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                    <div if:true={loading}>
+                        <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Add" disabled={disableAdd} onclick={handleAdd} variant="brand">
+                        </lightning-button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <lightning-button label="Cancel" variant="neutral" onclick={closeModal}></lightning-button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </lightning-card>
+</template>

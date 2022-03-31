@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-Chatter</defaultLandingTab>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <tabs>standard-Chatter</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>Buying_Box__c</tabs>
+    <tabs>Seller_Boxes__c</tabs>
+    <tabs>Renovation_Project__c</tabs>
+    <tabs>Asset_Management__c</tabs>
+    <tabs>IncidentTracking__c</tabs>
+    <tabs>Repairs_Maintenance__c</tabs>
+    <tabs>Sourcing__c</tabs>
+    <tabs>Account_Group__c</tabs>
+    <tabs>Bid__c</tabs>
+    <tabs>SFSubscribersDE__c</tabs>
+    <tabs>Diligence_Inspection_Tracking__c</tabs>
+    <tabs>Property_Manager_Feedback__c</tabs>
+</CustomApplication>

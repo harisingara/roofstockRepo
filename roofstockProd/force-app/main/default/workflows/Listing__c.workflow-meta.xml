@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <outboundMessages>
+        <fullName>GF_Survey_CsatSellersPublish_780d333a</fullName>
+        <apiVersion>39.0</apiVersion>
+        <endpointUrl>https://www.getfeedback.com/campaigns/yybPi6hC/transactional_send</endpointUrl>
+        <fields>Id</fields>
+        <fields>Listing_Id__c</fields>
+        <fields>Seller_Contact_Email__c</fields>
+        <fields>Seller_Contact_Name__c</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>vivek.visvanathan@roofstock.com</integrationUser>
+        <name>GF_Survey_CsatSellersPublish_780d333a</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+</Workflow>

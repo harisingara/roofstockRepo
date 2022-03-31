@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Case_Email_message_Sent</fullName>
+        <field>Status</field>
+        <literalValue>Waiting for External</literalValue>
+        <name>Case Email message Sent</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Case_Email_on_Resolved</fullName>
+        <description>Change from resolved to reopen</description>
+        <field>Status</field>
+        <literalValue>Reopen</literalValue>
+        <name>Case Email on Resolved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>EmailToCaseRecieved</fullName>
+        <field>Status</field>
+        <literalValue>Customer Response Received</literalValue>
+        <name>EmailToCaseRecieved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Last_Email_Received</fullName>
+        <field>Last_Email_Received_Date__c</field>
+        <formula>Now()</formula>
+        <name>Update Last Email Received</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Last_Email_Sent</fullName>
+        <field>Last_Email_Sent_Date__c</field>
+        <formula>Now()</formula>
+        <name>Update Last Email Sent</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>Case Email message Recieve</fullName>
+        <actions>
+            <name>EmailToCaseRecieved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>EmailMessage.Incoming</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>EmailMessage.Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Waiting For External,Waiting For Internal,In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Streetlane Collection,Streetlane Leasing Tier 1,Streetlane Resident Communicator Tier 1</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Email message Sent</fullName>
+        <actions>
+            <name>Case_Email_message_Sent</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>EmailMessage.Status</field>
+            <operation>equals</operation>
+            <value>Sent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Customer Response Received,Waiting For Internal,In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Streetlane Collection,Streetlane Leasing Tier 1,Streetlane Resident Communicator Tier 1</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Email on Resolved</fullName>
+        <actions>
+            <name>Case_Email_on_Resolved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>EmailMessage.Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>EmailMessage.Incoming</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Resolved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Streetlane Collection,Streetlane Leasing Tier 1,Streetlane Resident Communicator Tier 1</value>
+        </criteriaItems>
+        <description>Customer Response is recieved when current status is Resolved</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email Message Received</fullName>
+        <actions>
+            <name>Update_Last_Email_Received</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>EmailMessage.Incoming</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>EmailMessage.Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
+        <description>Email Message Received</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email message Sent</fullName>
+        <actions>
+            <name>Update_Last_Email_Sent</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>EmailMessage.Status</field>
+            <operation>equals</operation>
+            <value>Sent</value>
+        </criteriaItems>
+        <description>Email message Sent</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

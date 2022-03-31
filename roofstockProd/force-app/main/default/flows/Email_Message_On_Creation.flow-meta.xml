@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Alert</name>
+        <label>Email Alert</label>
+        <locationX>561</locationX>
+        <locationY>329</locationY>
+        <actionName>Violation__c.Email_Notification_for_Residential_Support</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Violation__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>53.0</apiVersion>
+    <decisions>
+        <name>Parent_Object</name>
+        <label>Parent Object</label>
+        <locationX>167</locationX>
+        <locationY>331</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Residential_SUpport</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Violation__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Email_Subject_and_Body</targetReference>
+            </connector>
+            <label>Residential SUpport</label>
+        </rules>
+    </decisions>
+    <description>Email Message On Creation</description>
+    <formulas>
+        <name>TypeofEmail</name>
+        <dataType>String</dataType>
+        <expression>IF ( {!$Record.Incoming},
+     &quot;New Incoming Email&quot;,
+     &quot;New Outgoing Email&quot;
+) + &quot; - &quot; + {!$Record.Subject}</expression>
+    </formulas>
+    <interviewLabel>Email Message On Creation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Email Message On Creation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Set Email Subject and Body</description>
+        <name>Set_Email_Subject_and_Body</name>
+        <label>Set Email Subject and Body</label>
+        <locationX>414</locationX>
+        <locationY>329</locationY>
+        <connector>
+            <targetReference>Email_Alert</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Violation__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Email_From__c</field>
+            <value>
+                <elementReference>$Record.FromAddress</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email_Message_Content__c</field>
+            <value>
+                <elementReference>$Record.HtmlBody</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email_Subject__c</field>
+            <value>
+                <elementReference>TypeofEmail</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email_To__c</field>
+            <value>
+                <elementReference>$Record.ToAddress</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Violation__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Parent_Object</targetReference>
+        </connector>
+        <object>EmailMessage</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

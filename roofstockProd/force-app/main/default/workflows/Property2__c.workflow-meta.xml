@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <rules>
+        <fullName>Create Validate HOA Task</fullName>
+        <actions>
+            <name>Validate_HOA_For_Property</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Property2__c.Property_Management_Company__c</field>
+            <operation>equals</operation>
+            <value>Streetlane Property Management</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Property2__c.Property_Status__c</field>
+            <operation>equals</operation>
+            <value>Property Management</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Validate_HOA_For_Property</fullName>
+        <assignedTo>integration@roofstock.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Please Validate the HOA information and if HOA exist, please create HOA record.
+Once you are done with the validation, please mark this task status as &quot;Completed&quot;.</description>
+        <dueDateOffset>10</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Medium</priority>
+        <protected>false</protected>
+        <status>Open</status>
+        <subject>Validate HOA For Property</subject>
+    </tasks>
+</Workflow>

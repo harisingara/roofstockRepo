@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>Enrollment__c</defaultLandingTab>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Roofstock Academy</label>
+    <logo>SalesLeader__Docs/RSA_v_2_png.png</logo>
+    <tabs>Academy_Program__c</tabs>
+    <tabs>Enrollment__c</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>Coaching_Session__c</tabs>
+    <tabs>RSA_Project__c</tabs>
+    <tabs>Email_Blast__c</tabs>
+    <tabs>Webinar__c</tabs>
+    <tabs>RSA_KPI_Snapshot__c</tabs>
+    <tabs>Asset_Management__c</tabs>
+    <tabs>RSA_Course__c</tabs>
+    <tabs>RSA_Affiliate__c</tabs>
+    <tabs>IncidentTracking__c</tabs>
+    <tabs>Repairs_Maintenance__c</tabs>
+    <tabs>Sourcing__c</tabs>
+    <tabs>Account_Group__c</tabs>
+    <tabs>Bid__c</tabs>
+    <tabs>SFSubscribersDE__c</tabs>
+    <tabs>RSA_Survey__c</tabs>
+    <tabs>Webinar_Attendee__c</tabs>
+    <tabs>Diligence_Inspection_Tracking__c</tabs>
+    <tabs>RSA_Group_Coaching__c</tabs>
+    <tabs>Property_Manager_Feedback__c</tabs>
+    <tabs>RSA_Lecture__c</tabs>
+</CustomApplication>

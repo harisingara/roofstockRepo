@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_ORU_activity_name</fullName>
+        <field>Activity_Name__c</field>
+        <formula>if( Activity_Code__c == &apos;self_registered_scheduling&apos; , &apos;Self Registered Scheduling&apos; , if( Activity_Code__c == &apos;controlled_showing&apos; , &apos;Controlled Scheduling&apos; , if( Activity_Code__c == &apos;self_registered_viewing&apos; , &apos;Self Registered Viewing&apos; , if( Activity_Code__c == &apos;prelease_signup&apos; , &apos;Pre-release Signup&apos; , if( Activity_Code__c == &apos;application_started&apos; , &apos;Application Started&apos; , if( Activity_Code__c == &apos;application_applied&apos; , &apos;Applied&apos; , if( Activity_Code__c == &apos;application_approved&apos; , &apos;Application Approved&apos; , if( Activity_Code__c == &apos;application_canceled&apos; , &apos;Application Cancelled&apos; , if( Activity_Code__c == &apos;application_denied&apos; , &apos;Application Denied&apos; , if( Activity_Code__c == &apos;lease_signed&apos; , &apos;Lease Signed&apos; , if( Activity_Code__c == &apos;application_transfer&apos; , &apos;Application Transfer&apos; , if( Activity_Code__c == &apos;prospect_canceled&apos; , &apos;Prospect Canceled&apos;,if( Activity_Code__c == &apos;phone_inquiry&apos; , &apos;Phone Inquiry&apos;, if( Activity_Code__c == &apos;prospect&apos; , &apos;Prospect&apos;, if( Activity_Code__c == &apos;prelease_alert&apos; , &apos;Prelease Alert&apos;, if( Activity_Code__c == &apos;other&apos; , &apos;Other&apos;, Activity_Code__c)
+)))))))))))))))</formula>
+        <name>Update ORU activity name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update ORU activity name</fullName>
+        <actions>
+            <name>Update_ORU_activity_name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Opportunity_Rental_Unit_Activity__c.Activity_Code__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

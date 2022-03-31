@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Diligence_Name</fullName>
+        <field>Name</field>
+        <formula>IF ( NOT(ISPICKVAL(Inspection_Type__c, &quot;&quot;)), TEXT(Inspection_Type__c) + &quot;-&quot;, &quot;&quot;) + Property_Unit__r.Name</formula>
+        <name>Set Diligence Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Inspection_PM_as_Derek</fullName>
+        <field>Project_Manager__c</field>
+        <lookupValue>dhale@roofstock.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Set Inspection PM as Derek</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Inspection_PM_as_Kayla</fullName>
+        <field>Project_Manager__c</field>
+        <lookupValue>kayla.maxwell@roofstock.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Set Inspection PM as Kayla</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Inspection_PM_as_William</fullName>
+        <field>Project_Manager__c</field>
+        <lookupValue>wolen@roofstock.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Set Inspection PM as William</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Total_Rehab_Fee</fullName>
+        <field>Copy_of_Total_Rehab_Fee__c</field>
+        <formula>Total_Job_Fee__c</formula>
+        <name>Update Total Rehab Fee</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Total_Rehab_With_Fee</fullName>
+        <field>Copy_of_Total_Rehab_with_Fee__c</field>
+        <formula>Total_Job_Cost_with_Fee__c</formula>
+        <name>Update Total Rehab With Fee</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Set Diligence Name</fullName>
+        <actions>
+            <name>Set_Diligence_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Inspection PM as Derek</fullName>
+        <actions>
+            <name>Set_Inspection_PM_as_Derek</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR (      Property_Unit__r.Property__r.City__c == &apos;Phoenix&apos;,      Property_Unit__r.Property__r.City__c == &apos;Houston&apos; )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Inspection PM as Kayla</fullName>
+        <actions>
+            <name>Set_Inspection_PM_as_Kayla</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR (      Property_Unit__r.Property__r.City__c == &apos;Las Vegas&apos;,      Property_Unit__r.Property__r.City__c == &apos;Salt Lake City&apos;,      Property_Unit__r.Property__r.City__c == &apos;Austin&apos;,      Property_Unit__r.Property__r.City__c == &apos;Denver&apos; )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Inspection PM as William</fullName>
+        <actions>
+            <name>Set_Inspection_PM_as_William</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR (      Property_Unit__r.Property__r.City__c == &apos;Dallas&apos;,      Property_Unit__r.Property__r.City__c == &apos;Atlanta&apos;,      Property_Unit__r.Property__r.City__c == &apos;Nashville&apos;,      Property_Unit__r.Property__r.State__c == &apos;OH&apos;,      Property_Unit__r.Property__r.State__c == &apos;IN&apos;,      Property_Unit__r.Property__r.State__c == &apos;AL&apos; )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Total Rehab Fields</fullName>
+        <actions>
+            <name>Update_Total_Rehab_Fee</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Total_Rehab_With_Fee</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

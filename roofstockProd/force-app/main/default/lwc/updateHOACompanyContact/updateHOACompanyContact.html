@@ -1,0 +1,52 @@
+<template>
+    <div class="slds-modal__header slds-align_absolute-center">
+        <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Update HOA Company contact</h2>
+    </div>
+        <div class="slds-p-around_medium">
+            <div if:false={isLoaded} class="slds-is-relative">
+                <lightning-spinner
+                    alternative-text="Loading..." variant="brand">
+                </lightning-spinner>
+            </div>
+            <h3 class="slds-section-title--divider">HOA Company Info</h3>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="hoaCompany" value={companyName} label="HOA Company" name="companyName" required>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input name="rsAccountId" label="HOA Company Account" value= {rsAccountID} class="hoaCompany"></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            
+
+            <h3 class="slds-section-title--divider">HOA Contact Info</h3>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="hoaContact" value={name} label="HOA Property Managment Company" name="name" required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="hoaContact" value={phone} label="Phone" name="phone" type="tel" pattern="[0-9]{10}$" message-when-pattern-mismatch="Please enter a valid phone number"></lightning-input>
+                </lightning-layout-item>
+                
+            </lightning-layout>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input class="hoaContact" value={email} label="Email" name="email" type="email" pattern="[A-Za-z0-9._-]+@[a-z0-9-]+.[a-z]{2,}$" message-when-pattern-mismatch="Please enter a valid email"></lightning-input>
+                </lightning-layout-item>
+                
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-textarea class="hoaContact" value={remittanceAddress} label="Remittance Address" name="remittanceAddress"></lightning-textarea>
+                </lightning-layout-item>
+            </lightning-layout>
+            
+
+        </div> 
+        <div class="slds-modal__footer slds-align_absolute-center">   
+            <div class="slds-align_absolute-center" style="height:5rem">
+                <lightning-button label="Update" onclick={save} variant="brand"></lightning-button>&nbsp;
+                <lightning-button label="Close" onclick={handleClose} variant="brand"></lightning-button>
+            </div> 
+        </div>   
+    
+</template>

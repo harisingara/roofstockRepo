@@ -1,0 +1,3 @@
+<apex:page standardController="Account" showHeader="true">
+    <c:LeadInfoAcct ></c:LeadInfoAcct>
+</apex:page>

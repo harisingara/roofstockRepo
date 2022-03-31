@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,force:hasSObjectName,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" >
+    <ltng:require styles="{!$Resource.QuickActionWidth}"/>
+    
+    <!--<aura:attribute name="recordTypeId" type="String" default="012L0000000m7feIAA"/>-->
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content{
+        overflow-y:hidden !important;
+        height:unset !important;
+        max-height:unset !important;
+        }
+        .slds-modal__close {
+        	display:none;
+        }
+    </aura:html>
+    <c:sendEmailTransaction recordId ="{!v.recordId}" onclosepopup="{!c.closeQA}" />
+</aura:component>

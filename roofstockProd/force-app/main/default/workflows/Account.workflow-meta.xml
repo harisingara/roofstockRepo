@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Bluebird_Account_Assigned</fullName>
+        <description>Bluebird Account Assigned</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Blue_Bird_Assignment_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Amy_Account_Owner_Update</fullName>
+        <description>Send Amy Account Change Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>amy@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Account_Owner_Update</template>
+    </alerts>
+    <rules>
+        <fullName>Offer Made Date</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>User.FirstName</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Status to Active</fullName>
+        <active>false</active>
+        <formula>NOT(ISBLANK(CreatedDate))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

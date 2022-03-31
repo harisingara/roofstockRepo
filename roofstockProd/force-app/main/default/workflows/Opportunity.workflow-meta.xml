@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>A_new_Retail_Seller_opportunity_was_created</fullName>
+        <description>A new Retail Seller opportunity was created</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>richard@roofstock.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/New_Seller_Opportunity_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Intro_Activity_New</fullName>
+        <ccEmails>support@roofstock.com</ccEmails>
+        <description>Intro Activity</description>
+        <protected>false</protected>
+        <recipients>
+            <field>STAMP_BUYER_EMAIL__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Post_Close_Introduction</template>
+    </alerts>
+    <alerts>
+        <fullName>Leasing_No_Application_First_reminder</fullName>
+        <description>Leasing - No Application - First reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Leasing_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>noreply@streetlane.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Leasing/Leasing_First_Reminder</template>
+    </alerts>
+    <alerts>
+        <fullName>Leasing_No_Application_Second_reminder</fullName>
+        <description>Leasing - No Application - Second reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Leasing_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>noreply@streetlane.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Leasing/Leasing_Second_Reminder</template>
+    </alerts>
+    <alerts>
+        <fullName>Leasing_No_Application_Third_reminder</fullName>
+        <description>Leasing - No Application - Third reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Leasing_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>noreply@streetlane.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Leasing/Leasing_Third_Reminder</template>
+    </alerts>
+    <alerts>
+        <fullName>Opp_Closed_Lost_Email_AE_and_Director</fullName>
+        <description>Opp Closed Lost Email AE and Director</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>Director_of_Retail_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Inventory/Opportunity_Closed_Lost_Detail</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Stage_Offer_Submitted</fullName>
+        <description>Opportunity Stage Offer Submitted</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Inventory/Opportunity_Stage_Offer_Made</template>
+    </alerts>
+    <alerts>
+        <fullName>Test_Get_Feedback</fullName>
+        <description>*Test Get Feedback</description>
+        <protected>false</protected>
+        <recipients>
+            <field>STAMP_BUYER_EMAIL__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Survey/Test_Survey</template>
+    </alerts>
+    <alerts>
+        <fullName>Test_Immediate</fullName>
+        <description>Test Immediate</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>support@roofstock.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Post_Close_Introduction</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Add_90_days_to_Signed_Listing_Date</fullName>
+        <description>Adds 90 days to the Signed Listing Date and populates this to Close Date</description>
+        <field>CloseDate</field>
+        <formula>Signed_Listing_Date__c + 90</formula>
+        <name>Add 90 days to Signed Listing Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Create_Purchase_Number</fullName>
+        <description>Fills in Account Purchase Number with n + 1 from Account.Related_Opportunity_Count__c</description>
+        <field>Account_Purchase_Number__c</field>
+        <formula>Account.Related_Opportunity_Count__c + 1</formula>
+        <name>Create Purchase Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Flag_as_Bluebird</fullName>
+        <description>If the account is flagged as a bluebird, this WFR flags opps as bluebirds as well. Only done on creation, so if this particular opp is no longer a bluebird, the rep can change it.</description>
+        <field>Bluebird__c</field>
+        <literalValue>1</literalValue>
+        <name>Flag as Bluebird</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Leasing_update_opp_stage</fullName>
+        <field>StageName</field>
+        <literalValue>Contacted</literalValue>
+        <name>Leasing - Update Stage to Contacted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Loss_Reason</fullName>
+        <field>Loss_Reason1__c</field>
+        <literalValue>Not a RS Market</literalValue>
+        <name>Loss Reason</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Opportunity_Created_Date_Update</fullName>
+        <description>Update the field with the DateValue of the createdDate field of the Opportunity</description>
+        <field>Opportunity_Created_Date__c</field>
+        <formula>DATEVALUE(CreatedDate)</formula>
+        <name>Opportunity Created Date Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Seller_completed_transaction</fullName>
+        <field>Seller_completed_transaction__c</field>
+        <literalValue>1</literalValue>
+        <name>Seller completed transaction?</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>AccountId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Seller_in_transaction</fullName>
+        <field>Seller_in_transaction__c</field>
+        <literalValue>1</literalValue>
+        <name>Seller in transaction?</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>AccountId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Application_Incomplete_Date</fullName>
+        <field>Date_Application_Incomplete__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Application Incomplete Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Date_Ready_For_Screening</fullName>
+        <field>Date_Ready_For_Screening__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Date Ready For Screening</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Ren_Oppty_Stage</fullName>
+        <field>StageName</field>
+        <literalValue>Proposal</literalValue>
+        <name>Set Ren Oppty Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Stage_to_Qualified_Listing</fullName>
+        <description>Sets stage to Qualified Listing</description>
+        <field>StageName</field>
+        <literalValue>Qualified Listing</literalValue>
+        <name>Set Stage to Qualified Listing</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Stage_to_Screening</fullName>
+        <field>StageName</field>
+        <literalValue>Screening</literalValue>
+        <name>Set Stage to Screening</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_Stage_to_Application</fullName>
+        <field>Sub_Stage__c</field>
+        <literalValue>Application Incomplete</literalValue>
+        <name>Set Sub Stage to Application</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Signed_Listing_Stage_Update</fullName>
+        <field>StageName</field>
+        <literalValue>Signed Listing</literalValue>
+        <name>Signed Listing Stage Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stage_Closed_Lost</fullName>
+        <description>Opportunity Stage to Closed Lost</description>
+        <field>StageName</field>
+        <literalValue>Closed Lost</literalValue>
+        <name>Stage Closed Lost</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Sub_Stage_to_Screening_Pending</fullName>
+        <field>Sub_Stage__c</field>
+        <literalValue>Screening Pending</literalValue>
+        <name>Sub Stage to Screening Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Amount</fullName>
+        <description>sets Amount = Roofstock_Property_Revenue__c</description>
+        <field>Amount</field>
+        <formula>Roofstock_Property_Revenue__c</formula>
+        <name>Update Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Close_Date</fullName>
+        <description>Update Close Date to Target Date to Sign Listing + 120</description>
+        <field>CloseDate</field>
+        <formula>Target_Date_to_Sign_Listing__c + 120</formula>
+        <name>Update Close Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Close_Date_from_Published_Date</fullName>
+        <description>Updates Close Date to Published Date + 30</description>
+        <field>CloseDate</field>
+        <formula>In_Contract_Date__c + 30</formula>
+        <name>Update Close Date from Published Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Non_Refundable_Date</fullName>
+        <description>Update date for &quot;Non-refundable date&quot; field to reflect 20 days from &quot;published date&quot;.</description>
+        <field>Non_Refundable_Date__c</field>
+        <formula>In_Contract_Date__c + 21</formula>
+        <name>Update Non Refundable Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Stamp_Buyer_Email_Address</fullName>
+        <field>STAMP_BUYER_EMAIL__c</field>
+        <formula>Buyer_Contact_Name__r.Email</formula>
+        <name>Update Stamp Buyer Email Address</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>What_was_Lost</fullName>
+        <field>What_was_lost__c</field>
+        <literalValue>Property Listing</literalValue>
+        <name>What was Lost</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>copy_number_of_transactions</fullName>
+        <field>Completed_Property_Transactions_Text__c</field>
+        <formula>Completed_Property_Transactions__c</formula>
+        <name>copy number of transactions</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>remove_record_from_2nd_emails</fullName>
+        <field>leasingEmailInclude__c</field>
+        <literalValue>0</literalValue>
+        <name>Leasing-Remove Record From 2nd emails</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Application Incomplete</fullName>
+        <actions>
+            <name>Set_Application_Incomplete_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Sub_Stage_to_Application</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.IsClosed</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Application_Incomplete__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Default Opportunity Tasks</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Institutional Seller</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Every Time Op Modified</fullName>
+        <actions>
+            <name>Update_Stamp_Buyer_Email_Address</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Institutional Seller Signed Listing or Published</fullName>
+        <actions>
+            <name>Add_90_days_to_Signed_Listing_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Institutional Seller</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Published,Inst - Signed Listing</value>
+        </criteriaItems>
+        <description>When an institutional seller opp hits Signed Listing or Published, this adds 90 days to the Signed Listing Date and enters this new date into the Close Date</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Institutional Seller Stage Qualified Listing or Proposal Delivered</fullName>
+        <actions>
+            <name>Update_Close_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Institutional Seller</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Qualified Listing,Proposal Delivered</value>
+        </criteriaItems>
+        <description>Institutional Seller Stage Qualified Listing or Proposal Delivered, updates Close Date to Target Date to Sign Listing + 120 days</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Institutional Seller%3A In Contract</fullName>
+        <actions>
+            <name>Update_Close_Date_from_Published_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Non_Refundable_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Institutional Seller</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>In Contract</value>
+        </criteriaItems>
+        <description>When an institutional seller opp hits stage &quot;In Contract&quot;, this updates the &quot;Close Date&quot; field to add 30 days from &quot;In Contract Date&quot; and adds 21 days to In Contract Date and populates this into &quot;Non-refundable Date&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Leasing - No Application - First reminder %28Deactivated%29</fullName>
+        <active>false</active>
+        <description>Leasing - Send Email for No Showing after 24 hours from opp created date</description>
+        <formula>AND( RecordType.Name=&apos;Leasing&apos;, NOT ISBLANK(Primary_Leasing_Contact__r.Email), NOT Primary_Leasing_Contact__r.HasOptedOutOfEmail, ISPICKVAL(StageName, &quot;New&quot;))</formula>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_No_Application_First_reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_update_opp_stage</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_First_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Opportunity.CreatedDate</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing - No Application - First reminder V2</fullName>
+        <active>true</active>
+        <description>Leasing-Send Email for No Showing after 4 hours from opp created date</description>
+        <formula>AND( RecordType.Name=&apos;Leasing&apos;, NOT ISBLANK(Primary_Leasing_Contact__r.Email), NOT Primary_Leasing_Contact__r.HasOptedOutOfEmail, ISPICKVAL(StageName, &quot;New&quot;))</formula>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_No_Application_First_reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_update_opp_stage</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_First_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Opportunity.CreatedDate</offsetFromField>
+            <timeLength>4</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing - No Application - Second reminder</fullName>
+        <active>true</active>
+        <description>Leasing-Send Email 3 days from created date</description>
+        <formula>AND(     RecordType.Name=&apos;Leasing&apos;,     NOT ISBLANK(Primary_Leasing_Contact__r.Email),      NOT Primary_Leasing_Contact__r.HasOptedOutOfEmail,      OR (ISPICKVAL(StageName, &quot;Contacted&quot;), ISPICKVAL(StageName, &quot;New&quot;)))</formula>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_No_Application_Second_reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_Second_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Opportunity.CreatedDate</offsetFromField>
+            <timeLength>3</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing - No Application - Third reminder</fullName>
+        <active>true</active>
+        <description>Leasing-Send Email 6 days  from created date</description>
+        <formula>AND(     RecordType.Name=&apos;Leasing&apos;,     NOT ISBLANK(Primary_Leasing_Contact__r.Email),      NOT Primary_Leasing_Contact__r.HasOptedOutOfEmail,      OR (ISPICKVAL(StageName, &quot;Contacted&quot;), ISPICKVAL(StageName, &quot;New&quot;)))</formula>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_No_Application_Third_reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_Third_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Opportunity.CreatedDate</offsetFromField>
+            <timeLength>6</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing Task Creation on Opportunity</fullName>
+        <actions>
+            <name>New_Opportunity</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Leasing</value>
+        </criteriaItems>
+        <description>Leasing Task Creation on Opportunity</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Leasing2 - No Application - First reminder2</fullName>
+        <active>false</active>
+        <description>Leasing - Send Email for No Showing after 24 hours from opp created date</description>
+        <formula>AND (    RecordType.Name=&apos;Leasing&apos;,   leasingEmailInclude__c =true,   NOT ISBLANK(Primary_Leasing_Contact__r.Email),   NOT Primary_Leasing_Contact__r.HasOptedOutOfEmail,    ISPICKVAL(StageName, &quot;New&quot;)   )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_No_Application_First_reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_update_opp_stage</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_First_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Opportunity.leasingEmailTriggerDate__c</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing2 - No Application - Second reminder2</fullName>
+        <active>false</active>
+        <description>Leasing-Send Email 48+24 hours from created date</description>
+        <formula>AND(           RecordType.Name=&apos;Leasing&apos;,              leasingEmailInclude__c =true,         NOT ISBLANK(Primary_Leasing_Contact__r.Email),               NOT Primary_Leasing_Contact__r.HasOptedOutOfEmail,                OR (ISPICKVAL(StageName, &quot;Contacted&quot;), ISPICKVAL(StageName, &quot;New&quot;)))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_No_Application_Second_reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_Second_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Opportunity.leasingEmailTriggerDate__c</offsetFromField>
+            <timeLength>3</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Leasing2 - No Application - Third reminder2</fullName>
+        <active>false</active>
+        <description>Leasing-Send Email 24+48+48 hours from created date</description>
+        <formula>AND(                   RecordType.Name=&apos;Leasing&apos;,               leasingEmailInclude__c =true,                 NOT ISBLANK(Primary_Leasing_Contact__r.Email),                     NOT Primary_Leasing_Contact__r.HasOptedOutOfEmail,                      OR (ISPICKVAL(StageName, &quot;Contacted&quot;), ISPICKVAL(StageName, &quot;New&quot;)))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Leasing_No_Application_Third_reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>remove_record_from_2nd_emails</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Leasing_No_Application_Third_reminder_Email_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Opportunity.leasingEmailTriggerDate__c</offsetFromField>
+            <timeLength>6</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Mark New Opp as Bluebird</fullName>
+        <actions>
+            <name>Flag_as_Bluebird</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Bluebird__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>This marks subsequent opps as bluebird if the account is marked as bluebird.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opp Closed Lost Email AE And Director</fullName>
+        <actions>
+            <name>Opp_Closed_Lost_Email_AE_and_Director</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(      OR(RecordType.Name = &quot;Retail Buyer&quot;,         RecordType.Name = &quot;Retail 1031 Buyer&quot;),      ISPICKVAL(StageName, &quot;Closed Lost&quot;)  )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Stage Offer Submitted</fullName>
+        <actions>
+            <name>Opportunity_Stage_Offer_Submitted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>EDITED: Changed to send email to Opportunity Owner when hidden Offer_Submitted_Through_Hubspot__c checkbox field is marked &quot;true&quot; by Apex trigger on Contact.</description>
+        <formula>AND( ISCHANGED( Offer_Submitted_Through_Hubspot__c ) ,  Offer_Submitted_Through_Hubspot__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Post Close Introduction</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Retail Buyer,Retail</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Intro_Activity_New</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Opportunity.CloseDate</offsetFromField>
+            <timeLength>6</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Purchase Number by Account</fullName>
+        <actions>
+            <name>Create_Purchase_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Calculates Account Purchase Number based on number of related Opportunities.</description>
+        <formula>ISBLANK( Account_Purchase_Number__c )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Ready For Screening</fullName>
+        <actions>
+            <name>Set_Date_Ready_For_Screening</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Stage_to_Screening</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Sub_Stage_to_Screening_Pending</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.IsClosed</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Ready_For_Screening__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Renewal Opp CMA Rent Filled In</fullName>
+        <actions>
+            <name>Set_Ren_Oppty_Stage</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Renewal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.CMA_Rent__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Waiting For CMA</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Retail Seller opp stage</fullName>
+        <actions>
+            <name>Set_Stage_to_Qualified_Listing</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Retail Seller</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Qualified Buyer</value>
+        </criteriaItems>
+        <description>For Retail Seller leads that are converted to Retail Seller opps, this sets the Opp stage to Qualified Listing instead of Qualified Buyer</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Seller Invalid State</fullName>
+        <actions>
+            <name>Loss_Reason</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Stage_Closed_Lost</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>What_was_Lost</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(CONTAINS($Label.Property_State, Property_State__c ) ,  RecordType.DeveloperName == &apos;Retail_Seller&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Seller has completed transaction%3F</fullName>
+        <actions>
+            <name>Seller_completed_transaction</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Seller in transaction%3F</fullName>
+        <actions>
+            <name>Seller_in_transaction</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>In Contract</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Sent email on retail buyer opportunity</fullName>
+        <actions>
+            <name>A_new_Retail_Seller_opportunity_was_created</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Retail Seller</value>
+        </criteriaItems>
+        <description>Sent email on retail buyer opportunity</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Amount field</fullName>
+        <actions>
+            <name>Update_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Originally, opportunity.amount was never used, instead users filled in other fields to calculate opp.Roofstock_Revenue_Property__c. This WFR syncs opp.amount to opp.Roofstock_Revenue_Property__c so we can forecast without interrupting user workflow</description>
+        <formula>OR(  Amount &lt;&gt;  Roofstock_Property_Revenue__c,  ISNULL(Amount))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Signed List Date Updated</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Signed_Listing__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Signed Listing</fullName>
+        <actions>
+            <name>Signed_Listing_Stage_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Signed_Listing__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Retail Seller</value>
+        </criteriaItems>
+        <description>Change Opportunity Stage  to Signed Listing when date is filled in</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Test Get Feedback</fullName>
+        <actions>
+            <name>Test_Get_Feedback</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.TEST_GET_FEEDBACK__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Opportunity Created Date</fullName>
+        <actions>
+            <name>Opportunity_Created_Date_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update the field with the DateValue of the createdDate field of the Opportunity</description>
+        <formula>NOT(ISBLANK(CreatedDate))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Leasing_No_Application_First_reminder_Email_Sent</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Automated Email sent</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Leasing - No Application - First reminder Email Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>Leasing_No_Application_Second_reminder_Email_Sent</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Leasing - No Application - Second reminder Email Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>Leasing_No_Application_Third_reminder_Email_Sent</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Leasing - No Application - Third reminder Email Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>New_Opportunity</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>1</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Opportunity.CreatedDate</offsetFromField>
+        <priority>Medium</priority>
+        <protected>false</protected>
+        <status>Open</status>
+        <subject>New Opportunity</subject>
+    </tasks>
+    <tasks>
+        <fullName>Record_of_Closed_Won</fullName>
+        <assignedTo>integration@roofstock.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Record of Closed Won</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Open</status>
+        <subject>Record of Closed Won</subject>
+    </tasks>
+</Workflow>
